@@ -100,4 +100,4 @@ spec:
       volumes:
         - name: vsphere-config-volume
           configMap:
-            name: cloud-config
+            name: vsphere-cloud-config
