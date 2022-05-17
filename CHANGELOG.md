@@ -7,4 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Add upstream CPI chart at 1.22.6
+
 [Unreleased]: https://github.com/giantswarm/cloud-provider-vsphere-app/tree/main
