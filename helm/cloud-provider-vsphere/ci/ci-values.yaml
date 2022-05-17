@@ -4,5 +4,5 @@ daemonset:
       cpu: 500m
       memory: 512Mi
     requests:
-       cpu: 256m
-       memory: 128Mi
+      cpu: 256m
+      memory: 128Mi
