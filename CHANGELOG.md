@@ -7,7 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Corrected label indentation for daemonset pods.
+
 ## [1.0.1] - 2022-05-17
+
+### Added
+
+- Added Giant Swarm helper functions.
+
+### Fixed
+
+- Resolve chart linting issues.
 
 ## [1.0.0] - 2022-05-17
 
