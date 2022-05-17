@@ -8,6 +8,7 @@ metadata:
     vsphere-cpi-infra: pod-security-policy
     component: cloud-controller-manager
     release: {{ .Release.Name }}
+    {{- include "labels.common" $ | nindent 4 }}
   {{- if .Values.podSecurityPolicy.annotations }}
   annotations:
   {{- toYaml .Values.podSecurityPolicy.annotations | indent 4 }}
