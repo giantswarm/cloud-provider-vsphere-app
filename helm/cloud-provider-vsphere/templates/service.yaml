@@ -10,6 +10,7 @@ metadata:
     component: cloud-controller-manager
     heritage: {{ .Release.Service }}
     release: {{ .Release.Name }}
+    {{- include "labels.common" $ | nindent 4 }}
   namespace: {{ .Release.Namespace }}
   {{- if .Values.service.annotations }}
   annotations:
