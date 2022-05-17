@@ -7,11 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.1] - 2022-05-17
+
 ## [1.0.0] - 2022-05-17
 
 ### Added
 
 - Add upstream CPI chart at 1.22.6
 
-[Unreleased]: https://github.com/giantswarm/cloud-provider-vsphere-app/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/giantswarm/cloud-provider-vsphere-app/compare/v1.0.1...HEAD
+[1.0.1]: https://github.com/giantswarm/cloud-provider-vsphere-app/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/giantswarm/cloud-provider-vsphere-app/releases/tag/v1.0.0
