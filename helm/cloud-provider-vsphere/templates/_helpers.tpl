@@ -81,7 +81,7 @@ app.kubernetes.io/instance: {{ .Release.Name | quote }}
 app.kubernetes.io/managed-by: {{ .Release.Name | quote }}
 app.kubernetes.io/version: {{ .Chart.Version | quote }}
 helm.sh/chart: {{ include "chart" . | quote }}
-giantswarm.io/cluster: {{ .Values.clusterName | quote }}
+giantswarm.io/cluster: {{ .Release.Name | quote }}
 giantswarm.io/managed-by: {{ .Release.Name | quote }}
 giantswarm.io/organization: {{ .Values.organization | quote }}
 giantswarm.io/service-type: managed
