@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/giantswarm/cloud-provider-vsphere-app-app.svg?style=shield)](https://circleci.com/gh/giantswarm/cloud-provider-vsphere-app-app)
+[![CircleCI](https://circleci.com/gh/giantswarm/cloud-provider-vsphere-app.svg?style=shield)](https://circleci.com/gh/giantswarm/cloud-provider-vsphere-app)
 
 # cloud-provider-vsphere chart
 
