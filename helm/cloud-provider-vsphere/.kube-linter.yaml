@@ -13,3 +13,5 @@ checks:
   - "unset-memory-requirements"
   - "use-namespace"
   - "wildcard-in-rules"
+  - "no-node-affinity"
+  - "dnsconfig-options"
