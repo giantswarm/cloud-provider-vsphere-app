@@ -101,13 +101,13 @@
                 }
             }
         },
-        "ingress": {
+        "secret": {
             "type": "object",
             "properties": {
-                "annotations": {
-                    "type": "object"
+                "name": {
+                    "type": "string"
                 },
-                "enabled": {
+                "create": {
                     "type": "boolean"
                 }
             }
@@ -142,29 +142,6 @@
                 },
                 "runAsUser": {
                     "type": "integer"
-                }
-            }
-        },
-        "service": {
-            "type": "object",
-            "properties": {
-                "annotations": {
-                    "type": "object"
-                },
-                "enabled": {
-                    "type": "boolean"
-                },
-                "endpointPort": {
-                    "type": "integer"
-                },
-                "loadBalancerSourceRanges": {
-                    "type": "array"
-                },
-                "targetPort": {
-                    "type": "integer"
-                },
-                "type": {
-                    "type": "string"
                 }
             }
         },
