@@ -1,0 +1,9 @@
+dependencies:
+- name: vsphere-csi-driver
+  repository: ""
+  version: 1.0.0
+- name: cloud-provider-for-vsphere
+  repository: ""
+  version: 1.0.0
+digest: sha256:5bf5a9caaf0e4c229752df2ab7c111970f0c7b522698339f834c406fd62906be
+generated: "2023-03-01T14:18:06.26048+01:00"

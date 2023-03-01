@@ -1,0 +1,15 @@
+apiVersion: v2
+name: vsphere-csi-driver
+version: 1.0.0
+appVersion: 1.1.1
+description: A Helm chart for vSphere CSI Driver (CSI Plugin)
+home: https://github.com/kubernetes-sigs/vsphere-csi-driver
+keywords:
+  - vsphere
+  - vmware
+  - cloud
+  - provider
+  - csi
+
+sources:
+  - https://github.com/kubernetes-sigs/vsphere-csi-driver

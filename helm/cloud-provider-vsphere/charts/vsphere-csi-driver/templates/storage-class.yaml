@@ -1,0 +1,19 @@
+#https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid-Integrated-Edition/1.13/tkgi/GUID-vsphere-cns-manual.html#manual
+{{- with .Values.storageClass }}
+{{- if .enabled }}
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: demo-sts-storageclass #todo name
+  labels:
+    {{- include "labels.common" . | nindent 4 }}
+  {{- if .delete.isDefault }}
+  annotations:
+      storageclass.kubernetes.io/is-default-class: "true"
+  {{- end }}
+provisioner: csi.vsphere.vmware.com
+allowVolumeExpansion: true
+parameters:
+  datastoreurl: "ds:///vmfs/volumes/vsan:52d8eb4842dbf493-41523be9cd4ff7b7/" #todo: parametrize
+{{- end }}
+{{- end }}
