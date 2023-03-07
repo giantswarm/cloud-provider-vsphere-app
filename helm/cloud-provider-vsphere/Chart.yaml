@@ -1,18 +1,17 @@
+apiVersion: v2
+version: 0.2.3
+appVersion: 0.0.1
+name: cloud-provider-vsphere
+description: A Helm chart for cloud-provider-vsphere with CPI and CSI
+engine: gotpl
+home: https://github.com/giantswarm/cloud-provider-vsphere-app
+sources:
+  - https://github.com/giantswarm/cloud-provider-vsphere-app
 annotations:
   application.giantswarm.io/team: "rocket"
-apiVersion: v2
-description: A Helm chart for vSphere Cloud Provider Interface Manager (CPI)
-home: https://github.com/giantswarm/cloud-provider-vsphere-app
-keywords:
-  - vsphere
-  - vmware
-  - cloud
-  - provider
-  - cpi
-name: cloud-provider-vsphere-app
-restrictions:
-  compatibleProviders:
-    - vsphere
-sources:
-  - https://github.com/kubernetes/cloud-provider-vsphere
-version: 1.0.0
+maintainers:
+  - name: Team Rocket
+    email: team-rocket@giantswarm.io
+dependencies:
+  - name: cloud-provider-for-vsphere
+    version: 1.0.0
