@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Move CPI into a sub chart.
+- Add CSI as a sub chart.
  
 ## [1.3.0] - 2022-05-17
 

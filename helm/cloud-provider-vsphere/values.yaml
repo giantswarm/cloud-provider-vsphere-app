@@ -1,6 +1,13 @@
-# Default values for vSphere CPI.
-# This is a YAML-formatted file.
-# vSohere CPI values are grouped by component
+vsphere-csi-driver:
+  config:
+    enabled: false
+    clusterId: k8s-cluster
+    vcenter: "vcenter.local"
+    username: "user"
+    password: "pass"
+    datacenter: "dc"
+    region: "k8s-region"
+    zone: "k8s-zone"
 
 cloud-provider-for-vsphere:
   global:

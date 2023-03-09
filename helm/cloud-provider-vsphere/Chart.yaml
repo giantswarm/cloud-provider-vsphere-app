@@ -15,3 +15,5 @@ maintainers:
 dependencies:
   - name: cloud-provider-for-vsphere
     version: 1.0.0
+  - name: vsphere-csi-driver
+    version: 1.0.0
