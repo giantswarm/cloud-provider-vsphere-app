@@ -1,3 +1,13 @@
+config:
+  clusterId: ""
+  vcenter: ""
+  username: ""
+  password: ""
+  datacenter: ""
+  region: ""
+  zone: ""
+  thumbprint: ""
+
 controllerDeployment:
   replicas: 1
   csiAttacher:
