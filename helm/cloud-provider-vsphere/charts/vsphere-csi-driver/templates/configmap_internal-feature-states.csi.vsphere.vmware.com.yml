@@ -1,0 +1,24 @@
+---
+apiVersion: v1
+data:
+  "csi-migration": "true"
+  "csi-auth-check": "true"
+  "online-volume-extend": "true"
+  "trigger-csi-fullsync": "false"
+  "async-query-volume": "true"
+  "improved-csi-idempotency": "true"
+  "improved-volume-topology": "true"
+  "block-volume-snapshot": "true"
+  "csi-windows-support": "false"
+  "use-csinode-id": "true"
+  "list-volumes": "false"
+  "pv-to-backingdiskobjectid-mapping": "false"
+  "cnsmgr-suspend-create-volume": "true"
+  "topology-preferential-datastores": "false"
+  "max-pvscsi-targets-per-vm": "true"
+kind: ConfigMap
+metadata:
+  name: internal-feature-states.csi.vsphere.vmware.com
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "labels.common" . | nindent 4 }}

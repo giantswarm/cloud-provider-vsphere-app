@@ -1,0 +1,49 @@
+controllerDeployment:
+  replicas: 1
+  csiAttacher:
+    image: k8s.gcr.io/sig-storage/csi-attacher
+    tag: v3.5.0
+  csiResizer:
+    image: k8s.gcr.io/sig-storage/csi-resizer
+    tag: v1.5.0
+  csiController:
+    image: gcr.io/cloud-provider-vsphere/csi/release/driver
+    tag: v2.7.1
+  livenessProbe:
+    image: k8s.gcr.io/sig-storage/livenessprobe
+    tag: v2.7.0
+  syncer:
+    image: gcr.io/cloud-provider-vsphere/csi/release/syncer
+    tag: v2.7.1
+  csiProvisioner:
+    image: k8s.gcr.io/sig-storage/csi-provisioner
+    tag: v3.2.1
+  csiSnapshotter:
+    image: k8s.gcr.io/sig-storage/csi-snapshotter
+    tag: v6.0.1
+
+nodeDaemonset:
+  nodeDriverRegistrar:
+    image: k8s.gcr.io/sig-storage/csi-node-driver-registrar
+    tag: v2.5.1
+  csiNode:
+    image: gcr.io/cloud-provider-vsphere/csi/release/driver
+    tag: v2.7.1
+  livenessProbe:
+    image: k8s.gcr.io/sig-storage/livenessprobe
+    tag: v2.7.0
+
+csiDriver:
+  attachRequired: true
+  podInfoOnMount: false
+
+storageClass:
+  enabled: true
+  delete:
+    isDefault: true
+    vcdStorageProfileName: "vSAN Default Storage Policy"
+    fileSystem: "ext4"
+  retain:
+    isDefault: false
+    vcdStorageProfileName: "vSAN Default Storage Policy"
+    fileSystem: "ext4"
