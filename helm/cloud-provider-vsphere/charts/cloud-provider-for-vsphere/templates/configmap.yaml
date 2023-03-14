@@ -1,36 +1,41 @@
-{{- if .Values.config.enabled | default .Values.global.config.enabled -}}
+{{- $config := .Values.config -}}
+{{- if .Values.global.config }}
+{{- $config := merge .Values.config .Values.global.config -}}
+{{- end }}
+{{- if $config.enabled -}}
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: vsphere-cloud-config
+  name: {{ $config.name | default "cloud-config" }}
   labels:
     app: {{ template "cpi.name" . }}
     vsphere-cpi-infra: cloud-config
     component: cloud-controller-manager
-    {{- include "labels.common" $ | nindent 4 }}
   namespace: {{ .Release.Namespace }}
 data:
   vsphere.conf: |
     # Global properties in this section will be used for all specified vCenters unless overriden in VirtualCenter section.
     global:
       port: 443
+      {{- if $config.thumbprint }}
+      thumbprint: {{ $config.thumbprint }}
+      {{- else }}
       # set insecure-flag to true if the vCenter uses a self-signed cert
       insecureFlag: true
+      {{- end }}
       # settings for using k8s secret
-      secretName: vsphere-cloud-secret
+      secretName: {{ $config.secret.name }}
       secretNamespace: {{ .Release.Namespace }}
 
     # vcenter section
     vcenter:
-      {{ .Values.config.vcenter }}:
-        server: {{ .Values.config.vcenter | default .Values.global.config.vcenter }}
-        user: {{ .Values.config.username | default .Values.global.config.username }}
-        password: {{ .Values.config.password | default .Values.global.config.password }}
+      {{ $config.vcenter }}:
+        server: {{ $config.vcenter }}
         datacenters:
-          - {{ .Values.config.datacenter | default .Values.global.config.datacenter }}
+          - {{ $config.datacenter }}
 
     # labels for regions and zones
     labels:
-      region: {{ .Values.config.region | default .Values.global.config.region }}
-      zone: {{ .Values.config.zone | default .Values.global.config.zone }}
+      region: {{ $config.region }}
+      zone: {{ $config.zone }}
 {{- end -}}
