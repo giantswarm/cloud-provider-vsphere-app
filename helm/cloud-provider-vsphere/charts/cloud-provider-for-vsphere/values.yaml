@@ -50,7 +50,7 @@ serviceAccount:
 # Daemonset configuration
 daemonset:
   annotations: {}
-  image: gcr.io/cloud-provider-vsphere/cpi/release/manager
+  image: quay.io/giantswarm/cpi-vsphere-manager
   tag: v1.26.0
   pullPolicy: IfNotPresent
   dnsPolicy: ClusterFirst
