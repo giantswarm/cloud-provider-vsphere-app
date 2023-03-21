@@ -7,9 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.3.1] - 2023-03-14
+### Fixed
 
-## [1.4.0] - 2023-03-14
+- Add network policy for CSI controller.
+
+## [1.3.1] - 2023-03-14
 
 ### Changed
 
