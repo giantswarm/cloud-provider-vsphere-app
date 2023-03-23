@@ -1,30 +1,36 @@
 [![CircleCI](https://circleci.com/gh/giantswarm/cloud-provider-vsphere-app.svg?style=shield)](https://circleci.com/gh/giantswarm/cloud-provider-vsphere-app)
 
-# cloud-provider-vsphere chart
+# cloud-provider-vsphere-app
 
-Giant Swarm offers a cloud-provider-vsphere App which can be installed in workload clusters.
-Here we define the cloud-provider-vsphere chart with its templates and default configuration.
+This app contains CPI and CSI for CAPV clusters. 
 
-**What is this app?**
+## How to install
 
-`cloud-provider-vsphere` allows clusters to interface with vSphere.
+- Clone this repository. 
+  ```sh
+  git clone https://github.com/giantswarm/cloud-provider-vsphere-app.git
+  ```
+- Go into helm chart directory.
+  ```sh
+  cd cloud-provider-vsphere-app/helm/cloud-provider-vsphere
+  ```
+- Fill the missing values in values.yaml file.
+  ```sh
+  $EDITOR values.yaml
+  ```
+- Install the chart.
+  ```sh
+  helm install cloud-provider-vsphere -n kube-system -f values.yaml .
+  ```
 
-## Compatibility matrix
+## Source of charts
 
-This app tracks the [upstream cloud provider repo](https://github.com/kubernetes/cloud-provider-vsphere). The following matrix
-details which version of this app should be used with different Kubernetes versions.
+The sources of charts are as below.
 
-| app version | kubernetes version | upstream tag |
-| ----------- | ------------------ | ------------ |
-| v1.x.x      | 1.22.x             | v1.22.x      |
+- CPI: https://github.com/kubernetes/cloud-provider-vsphere/tree/master/charts/vsphere-cpi
+- CSI: https://github.com/kubernetes-sigs/vsphere-csi-driver/blob/master/manifests/vanilla/vsphere-csi-driver.yaml
 
-## Limitations
+CPI's helm chart is not as mature as we want so we customized it.
+CSI doesn't have a helm chart so we created the chart based on the manifest file.
 
-Some apps have restrictions on how they can be deployed.
-Not following these limitations will most likely result in a broken deployment.
-
-* Restricted to vSphere clusters only.
-
-## Credit
-
-* https://github.com/kubernetes/cloud-provider-vsphere
+It is planned to automate chart creation with `kustomize` to be able to update easily and to be able to track our custom changes properly.
