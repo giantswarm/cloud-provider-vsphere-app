@@ -18,12 +18,8 @@ Create chart name and version as used by the chart label.
 Common labels
 */}}
 {{- define "labels.common" -}}
-app.kubernetes.io/name: {{ include "name" . }}
-app.kubernetes.io/instance: {{ .Release.Name | quote }}
-app.kubernetes.io/managed-by: {{ .Release.Name | quote }}
+app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
 app.kubernetes.io/version: {{ .Chart.Version | quote }}
-helm.sh/chart: {{ include "chart" . | quote }}
-giantswarm.io/managed-by: {{ .Release.Name | quote }}
-giantswarm.io/service-type: managed
 application.giantswarm.io/team: {{ index .Chart.Annotations "application.giantswarm.io/team" | quote }}
+helm.sh/chart: {{ include "chart" . | quote }}
 {{- end -}}

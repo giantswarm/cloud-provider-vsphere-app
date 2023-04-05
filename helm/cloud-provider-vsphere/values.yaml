@@ -10,3 +10,11 @@ global:
     zone: ""
     # openssl s_client -connect <vcenter>:443 < /dev/null 2>/dev/null | openssl x509 -fingerprint -sha1 -noout
     thumbprint: ""
+
+kube-vip:
+  enabled: true
+
+kube-vip-cloud-provider:
+  enabled: true
+  rangeGlobal: ""
+  cidrGlobal: ""

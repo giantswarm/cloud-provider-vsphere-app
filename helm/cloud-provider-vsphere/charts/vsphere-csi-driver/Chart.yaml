@@ -10,4 +10,5 @@ keywords:
 sources:
   - https://github.com/kubernetes-sigs/vsphere-csi-driver
   - https://github.com/kubernetes-sigs/vsphere-csi-driver/blob/release-2.7/manifests/vanilla/vsphere-csi-driver.yaml
-
+annotations:
+  application.giantswarm.io/team: "rocket"
