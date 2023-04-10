@@ -5,7 +5,7 @@
 replicasCount: 1
 
 image:
-  repository: kubevip/kube-vip-cloud-provider
+  repository: docker.io/giantswarm/kube-vip-cloud-provider
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "v0.0.4"
