@@ -41,7 +41,8 @@
         "kube-vip": {
             "properties": {
                 "enabled": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": true
                 }
             },
             "type": "object"
@@ -52,7 +53,8 @@
                     "type": "string"
                 },
                 "enabled": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": true
                 },
                 "rangeGlobal":{
                     "type": "string"
