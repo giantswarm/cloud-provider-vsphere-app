@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.0] - 2023-04-11
+
 ### Added
 
 - Add kube-vip charts.
@@ -61,7 +63,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Add upstream CPI chart at 1.22.6
 
-[Unreleased]: https://github.com/giantswarm/cloud-provider-vsphere-app/compare/v1.3.3...HEAD
+[Unreleased]: https://github.com/giantswarm/cloud-provider-vsphere-app/compare/v1.4.0...HEAD
+[1.4.0]: https://github.com/giantswarm/cloud-provider-vsphere-app/compare/v1.3.3...v1.4.0
 [1.3.3]: https://github.com/giantswarm/cloud-provider-vsphere-app/compare/v1.3.2...v1.3.3
 [1.3.2]: https://github.com/giantswarm/cloud-provider-vsphere-app/compare/v1.3.1...v1.3.2
 [1.3.1]: https://github.com/giantswarm/cloud-provider-vsphere-app/compare/v1.4.0...v1.3.1
