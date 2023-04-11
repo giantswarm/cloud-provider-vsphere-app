@@ -11,3 +11,5 @@ keywords:
   - cpi
 sources:
   - https://github.com/kubernetes/cloud-provider-vsphere
+annotations:
+  application.giantswarm.io/team: "rocket"

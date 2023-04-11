@@ -37,6 +37,30 @@
                 }
             },
             "type": "object"
+        },
+        "kube-vip": {
+            "properties": {
+                "enabled": {
+                    "type": "boolean",
+                    "default": true
+                }
+            },
+            "type": "object"
+        },
+        "kube-vip-cloud-provider": {
+            "properties": {
+                "cidrGlobal":{
+                    "type": "string"
+                },
+                "enabled": {
+                    "type": "boolean",
+                    "default": true
+                },
+                "rangeGlobal":{
+                    "type": "string"
+                }
+            },
+            "type": "object"
         }
     },
     "type": "object"

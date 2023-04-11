@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Add kube-vip charts.
+
 ## [1.3.3] - 2023-03-28
 
 ## [1.3.2] - 2023-03-21
