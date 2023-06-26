@@ -1,0 +1,37 @@
+{{- with .Values.storageClass }}
+{{- if .enabled }}
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  labels:
+    {{- include "labels.common" $ | nindent 4 }}
+  {{- if .delete.isDefault }}
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "true"
+  {{- end }}
+  name: csi-vsphere-sc-delete
+provisioner: csi.vsphere.vmware.com
+reclaimPolicy: Delete
+allowVolumeExpansion: true
+parameters:
+  storagepolicyname: {{ .delete.vcdStorageProfileName | quote }}
+  csi.storage.k8s.io/fstype: {{ .delete.fileSystem }}
+---
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  labels:
+    {{- include "labels.common" $ | nindent 4 }}
+  {{- if .retain.isDefault }}
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "true"
+  {{- end }}
+  name: csi-vsphere-sc-retain
+provisioner: csi.vsphere.vmware.com
+reclaimPolicy: Retain
+allowVolumeExpansion: true
+parameters:
+  storagepolicyname: {{ .retain.vcdStorageProfileName | quote }}
+  csi.storage.k8s.io/fstype: {{ .retain.fileSystem }}
+{{- end }}
+{{- end }}

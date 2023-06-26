@@ -4,10 +4,10 @@ kind: ClusterRole
 metadata:
   name: {{ .Values.serviceAccount.name }}
   labels:
+    {{- include "labels.common" $ | nindent 4 }}
     app: {{ template "cpi.name" . }}
     vsphere-cpi-infra: role
     component: cloud-controller-manager
-    {{- include "labels.common" $ | nindent 4 }}
 rules:
   - apiGroups:
       - ""

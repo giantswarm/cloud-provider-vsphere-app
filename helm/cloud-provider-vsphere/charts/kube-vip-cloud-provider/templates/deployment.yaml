@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "kube-vip-cloud-provider.name" . }}
-  namespace: {{ .Release.Namespace | default "kube-system" }}
   labels:
     {{- include "labels.common" $ | nindent 4 }}
+  name: {{ include "kube-vip-cloud-provider.name" . }}
+  namespace: {{ .Release.Namespace | default "kube-system" }}
 spec:
   replicas: {{ .Values.replicasCount }}
   selector:

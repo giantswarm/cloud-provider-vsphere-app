@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
-  name: {{ include "kube-vip.name" . }}
-  namespace: {{ .Release.Namespace | default "kube-system" }}
   labels:
     {{- include "labels.common" $ | nindent 4 }}
+  name: {{ include "kube-vip.name" . }}
+  namespace: {{ .Release.Namespace | default "kube-system" }}
 spec:
   selector:
     matchLabels:
@@ -28,6 +28,15 @@ spec:
             {{- $value := $v }}
           - name: {{ quote $name }}
             value: {{ quote $value }}
+          {{- end }}
+        {{- end }}
+        {{- with .Values.envValueFrom }}
+          {{- range $k, $v := . }}
+            {{- $name := $k }}
+            {{- $value := $v }}
+          - name: {{ quote $name }}
+            valueFrom:
+              {{- toYaml $value | nindent 14 }}
           {{- end }}
         {{- end }}
       {{- with .Values.envFrom }}

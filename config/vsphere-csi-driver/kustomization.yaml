@@ -1,0 +1,8 @@
+namespace: "{{ .Release.Namespace }}"
+
+patchesStrategicMerge:
+  - patches/daemonset-images.yaml
+  - patches/deployment-images.yaml
+  - patches/internal-feature-states-topology.yaml
+resources:
+  - input/vsphere-csi-driver.yaml
