@@ -11,10 +11,29 @@ global:
     # openssl s_client -connect <vcenter>:443 < /dev/null 2>/dev/null | openssl x509 -fingerprint -sha1 -noout
     thumbprint: ""
 
+cloud-provider-for-vsphere:
+  daemonset:
+    image: docker.io/giantswarm/cpi-vsphere-manager
+
 kube-vip:
   enabled: true
+  env:
+    vip_interface: "eth0"
+  image:
+    repository: docker.io/giantswarm/kube-vip
+    tag: "v0.5.11"
+  tolerations:
+  - effect: NoSchedule
+    key: node-role.kubernetes.io/control-plane
+    operator: Exists
+  - effect: NoSchedule
+    key: node-role.kubernetes.io/master
+    operator: Exists
 
 kube-vip-cloud-provider:
   enabled: true
   rangeGlobal: ""
   cidrGlobal: ""
+  image:
+    repository: docker.io/giantswarm/kube-vip-cloud-provider
+    tag: "v0.0.4"

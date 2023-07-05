@@ -1,0 +1,15 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: vsphere-csi-node
+  namespace: vmware-system-csi
+spec:
+  template:
+    spec:
+      containers:
+      - image: "{{ .Values.nodeDaemonset.nodeDriverRegistrar.image}}:{{ .Values.nodeDaemonset.nodeDriverRegistrar.tag}}"
+        name: node-driver-registrar
+      - image: "{{ .Values.nodeDaemonset.csiNode.image}}:{{ .Values.nodeDaemonset.csiNode.tag}}"
+        name: vsphere-csi-node
+      - image: "{{ .Values.nodeDaemonset.livenessProbe.image}}:{{ .Values.nodeDaemonset.livenessProbe.tag}}"
+        name: liveness-probe

@@ -4,7 +4,7 @@ metadata:
   name: {{ include "kube-vip.name" . }}
   namespace: {{ .Release.Namespace }}
   labels:
-  {{- include "labels.common" $ | nindent 4 }}
+    {{- include "labels.common" $ | nindent 4 }}
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
@@ -12,8 +12,6 @@ metadata:
   annotations:
     rbac.authorization.kubernetes.io/autoupdate: "true"
   name: {{ include "kube-vip.name" . }}
-  labels:
-  {{- include "labels.common" $ | nindent 4 }}
 rules:
   - apiGroups: [""]
     resources: ["services", "services/status", "nodes"]
@@ -27,7 +25,7 @@ kind: ClusterRoleBinding
 metadata:
   name: {{ include "kube-vip.name" . }}
   labels:
-  {{- include "labels.common" $ | nindent 4 }}
+    {{- include "labels.common" $ | nindent 4 }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole

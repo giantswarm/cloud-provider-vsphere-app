@@ -1,13 +1,19 @@
+{{- $config := .Values.config -}}
+{{- if .Values.global -}}
+{{- if .Values.global.config -}}
+{{- $config = mergeOverwrite (deepCopy .Values.config) .Values.global.config -}}
+{{- end -}}
+{{- end -}}
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: {{ template "cpi.name" . }}
   labels:
+    {{- include "labels.common" $ | nindent 4 }}
     app: {{ template "cpi.name" . }}
     vsphere-cpi-infra: daemonset
     component: cloud-controller-manager
     tier: control-plane
-    {{- include "labels.common" $ | nindent 4 }}
   namespace: {{ .Release.Namespace }}
   annotations:
     {{- if .Values.daemonset.annotations }}
@@ -31,7 +37,6 @@ spec:
         tier: control-plane
         release: {{ .Release.Name }}
         vsphere-cpi-infra: daemonset
-        {{- include "labels.common" $ | nindent 8 }}
         {{- if .Values.daemonset.podLabels }}
         {{- toYaml .Values.daemonset.podLabels | nindent 8 }}
         {{- end }}
@@ -86,7 +91,7 @@ spec:
       volumes:
         - name: vsphere-config-volume
           configMap:
-            name: {{ if .Values.config.enabled }}{{- .Values.config.name }}{{- else }}cloud-config{{- end }}
+            name: {{ if $config.enabled }}{{- $config.name }}{{- else }}cloud-config{{- end }}
       affinity:
         nodeAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:

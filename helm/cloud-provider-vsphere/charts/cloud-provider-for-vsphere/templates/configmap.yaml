@@ -1,6 +1,8 @@
 {{- $config := .Values.config -}}
+{{- if .Values.global }}
 {{- if .Values.global.config }}
-{{- $config := merge .Values.config .Values.global.config -}}
+{{- $config = mergeOverwrite (deepCopy .Values.config) .Values.global.config -}}
+{{- end }}
 {{- end }}
 {{- if $config.enabled -}}
 apiVersion: v1
@@ -8,6 +10,7 @@ kind: ConfigMap
 metadata:
   name: {{ $config.name | default "cloud-config" }}
   labels:
+    {{- include "labels.common" $ | nindent 4 }}
     app: {{ template "cpi.name" . }}
     vsphere-cpi-infra: cloud-config
     component: cloud-controller-manager

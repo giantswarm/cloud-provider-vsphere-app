@@ -1,9 +1,25 @@
 {
     "$schema": "http://json-schema.org/schema#",
+    "type": "object",
     "properties": {
+        "cloud-provider-for-vsphere": {
+            "type": "object",
+            "properties": {
+                "daemonset": {
+                    "type": "object",
+                    "properties": {
+                        "image": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
         "global": {
+            "type": "object",
             "properties": {
                 "config": {
+                    "type": "object",
                     "properties": {
                         "clusterId": {
                             "type": "string"
@@ -32,36 +48,78 @@
                         "zone": {
                             "type": "string"
                         }
-                    },
-                    "type": "object"
+                    }
                 }
-            },
-            "type": "object"
+            }
         },
         "kube-vip": {
+            "type": "object",
             "properties": {
                 "enabled": {
-                    "type": "boolean",
-                    "default": true
+                    "type": "boolean"
+                },
+                "env": {
+                    "type": "object",
+                    "properties": {
+                        "vip_interface": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "image": {
+                    "type": "object",
+                    "properties": {
+                        "repository": {
+                            "type": "string"
+                        },
+                        "tag": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "tolerations": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "effect": {
+                                "type": "string"
+                            },
+                            "key": {
+                                "type": "string"
+                            },
+                            "operator": {
+                                "type": "string"
+                            }
+                        }
+                    }
                 }
-            },
-            "type": "object"
+            }
         },
         "kube-vip-cloud-provider": {
+            "type": "object",
             "properties": {
-                "cidrGlobal":{
+                "cidrGlobal": {
                     "type": "string"
                 },
                 "enabled": {
-                    "type": "boolean",
-                    "default": true
+                    "type": "boolean"
                 },
-                "rangeGlobal":{
+                "image": {
+                    "type": "object",
+                    "properties": {
+                        "repository": {
+                            "type": "string"
+                        },
+                        "tag": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "rangeGlobal": {
                     "type": "string"
                 }
-            },
-            "type": "object"
+            }
         }
-    },
-    "type": "object"
+    }
 }
