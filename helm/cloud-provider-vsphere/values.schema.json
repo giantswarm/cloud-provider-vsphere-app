@@ -15,6 +15,28 @@
                 }
             }
         },
+        "crdInstall": {
+            "type": "object",
+            "properties": {
+                "enable": {
+                    "type": "boolean"
+                },
+                "kubectl": {
+                    "type": "object",
+                    "properties": {
+                        "image": {
+                            "type": "string"
+                        },
+                        "registry": {
+                            "type": "string"
+                        },
+                        "tag": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
+        },
         "global": {
             "type": "object",
             "properties": {
@@ -47,6 +69,22 @@
                         },
                         "zone": {
                             "type": "string"
+                        }
+                    }
+                },
+                "kyvernoPolicyExceptions": {
+                    "type": "object",
+                    "properties": {
+                        "enabled": {
+                            "type": "boolean"
+                        }
+                    }
+                },
+                "podSecurityStandards": {
+                    "type": "object",
+                    "properties": {
+                        "enforced": {
+                            "type": "boolean"
                         }
                     }
                 }

@@ -1,24 +1,51 @@
 ##@ App
 
+OS ?= $(shell go env GOOS 2>/dev/null || echo linux)
+ARCH ?= $(shell go env GOARCH 2>/dev/null || echo amd64)
+KUSTOMIZE := ./bin/kustomize
+KUSTOMIZE_VERSION ?= v4.5.7
+
 .PHONY: all
 all: update-cpi-chart update-csi-chart update-kubevip-chart update-kubevip-cloud-provider-chart
+	@$(call say,Sync has been done ✓)
 
 .PHONY: update-cpi-chart
-update-cpi-chart: 
+update-cpi-chart:
+	@$(call say,CPI helm chart)
 	./hack/update-cpi-chart.sh
 	./hack/common-labels-injector.sh cloud-provider-for-vsphere
 
 .PHONY: update-csi-chart
-update-csi-chart: 
-	./hack/update-csi-chart.sh
+update-csi-chart: $(KUSTOMIZE)
+	@$(call say,CSI helm chart)
+	./hack/update-csi-chart.sh $(KUSTOMIZE)
 	./hack/common-labels-injector.sh vsphere-csi-driver
 
 .PHONY: update-kubevip-chart
-update-kubevip-chart: 
+update-kubevip-chart:
+	@$(call say,Kubevip helm chart)
 	./hack/update-kubevip-chart.sh
 	./hack/common-labels-injector.sh kube-vip
 
 .PHONY: update-kubevip-cloud-provider-chart
-update-kubevip-cloud-provider-chart: 
+update-kubevip-cloud-provider-chart:
+	@$(call say,Kubevip cloud provider helm chart)
 	./hack/update-kubevip-cloud-provider-chart.sh
 	./hack/common-labels-injector.sh kube-vip-cloud-provider
+
+$(KUSTOMIZE): ## Download kustomize locally if necessary.
+	@$(call say,Download Kustomize)
+	mkdir -p $(dir $@)
+	curl -sfL "https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2F$(KUSTOMIZE_VERSION)/kustomize_$(KUSTOMIZE_VERSION)_$(OS)_$(ARCH).tar.gz" | tar zxv -C $(dir $@)
+	chmod +x $@
+	@echo "kustomize downloaded"
+
+ifndef NO_COLOR
+YELLOW=\033[0;33m
+# no color
+NC=\033[0m
+endif
+
+define say
+echo "\n$(shell echo "$1 " | tr '[:rune:]' '=')\n $(YELLOW)$1$(NC)\n$(shell echo "$1 " | tr '[:rune:]' '=')"
+endef

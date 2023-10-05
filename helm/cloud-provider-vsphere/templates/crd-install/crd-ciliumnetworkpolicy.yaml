@@ -1,0 +1,23 @@
+{{- if .Values.global.crdInstall.enabled }}
+{{- if .Values.global.ciliumNetworkPolicy.enabled }}
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: {{ include "crdInstall" . }}
+  namespace: {{ .Release.Namespace | quote }}
+  annotations:
+    # create hook dependencies in the right order
+    "helm.sh/hook-weight": "-12"
+    {{- include "crdInstallAnnotations" . | nindent 4 }}
+  labels:
+    {{- include "labels.crdSelector" . | nindent 4 }}
+    role: {{ include "crdInstallSelector" . | quote }}
+spec:
+  endpointSelector:
+    matchLabels:
+      {{- include "labels.crdSelector" . | nindent 6 }}
+  egress:
+    - toEntities:
+        - kube-apiserver
+{{- end }}
+{{- end }}
