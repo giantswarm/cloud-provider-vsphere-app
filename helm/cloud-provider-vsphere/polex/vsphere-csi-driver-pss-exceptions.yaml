@@ -36,16 +36,16 @@ spec:
     ruleNames:
     - check-seccomp-strict
     - autogen-check-seccomp-strict
-  - policyName: disallow-capabilities
-    ruleNames:
-    - adding-capabilities
-    - autogen-adding-capabilities
-  - policyName: disallow-capabilities-strict
-    ruleNames:
-    - adding-capabilities-strict
-    - autogen-adding-capabilities-strict
-    - require-drop-all
-    - autogen-require-drop-all
+  # - policyName: disallow-capabilities
+  #   ruleNames:
+  #   - adding-capabilities
+  #   - autogen-adding-capabilities
+  # - policyName: disallow-capabilities-strict
+  #   ruleNames:
+  #   - adding-capabilities-strict
+  #   - autogen-adding-capabilities-strict
+  #   - require-drop-all
+  #   - autogen-require-drop-all
   - policyName: disallow-privilege-escalation
     ruleNames:
     - privilege-escalation

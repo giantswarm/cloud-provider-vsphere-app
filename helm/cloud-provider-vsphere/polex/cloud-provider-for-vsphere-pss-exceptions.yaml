@@ -2,7 +2,7 @@
 apiVersion: kyverno.io/v2alpha1
 kind: PolicyException
 metadata:
-  name: cloud-provider-exceptions
+  name: vsphere-cloud-provider-exceptions
   namespace: {{ .Release.Namespace }}
   labels:
     {{- include "labels.common" . | nindent 4 }}

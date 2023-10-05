@@ -39,6 +39,7 @@ kube-vip:
   image:
     repository: docker.io/giantswarm/kube-vip
     tag: "v0.5.11"
+  nameOverride: kube-vip-svc-lb
   tolerations:
   - effect: NoSchedule
     key: node-role.kubernetes.io/control-plane
@@ -54,6 +55,22 @@ kube-vip-cloud-provider:
   image:
     repository: docker.io/giantswarm/kube-vip-cloud-provider
     tag: "v0.0.4"
+  nameOverride: kube-vip-cloud-provider
+
+vsphere-csi-driver:
+  containerSecurityContext:
+    allowPrivilegeEscalation: true
+    capabilities:
+      drop:
+        - ALL
+    runAsNonRoot: false
+    seccompProfile:
+      type: RuntimeDefault
+
+  podSecurityContext:
+    runAsNonRoot: false
+    seccompProfile:
+      type: RuntimeDefault
 
 containerSecurityContext:
   allowPrivilegeEscalation: false

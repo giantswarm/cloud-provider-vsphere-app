@@ -4,9 +4,11 @@ OS ?= $(shell go env GOOS 2>/dev/null || echo linux)
 ARCH ?= $(shell go env GOARCH 2>/dev/null || echo amd64)
 KUSTOMIZE := ./bin/kustomize
 KUSTOMIZE_VERSION ?= v4.5.7
+YQ = ./bin/yq
+YQ_VERSION := 4.31.2
 
 .PHONY: all
-all: update-cpi-chart update-csi-chart update-kubevip-chart update-kubevip-cloud-provider-chart
+all: update-cpi-chart update-csi-chart apply-custom-patches-for-csi update-kubevip-chart update-kubevip-cloud-provider-chart
 	@$(call say,Sync has been done ✓)
 
 .PHONY: update-cpi-chart
@@ -15,11 +17,16 @@ update-cpi-chart:
 	./hack/update-cpi-chart.sh
 	./hack/common-labels-injector.sh cloud-provider-for-vsphere
 
+.PHONY: apply-custom-patches-for-csi
+apply-custom-patches-for-csi: $(YQ) ## apply giantswarm specific patches that are not possible via kustomize
+	@$(call say,Custom yq magic for CSI)
+	./hack/custom-patches.sh
+	./hack/common-labels-injector.sh vsphere-csi-driver
+
 .PHONY: update-csi-chart
 update-csi-chart: $(KUSTOMIZE)
 	@$(call say,CSI helm chart)
 	./hack/update-csi-chart.sh $(KUSTOMIZE)
-	./hack/common-labels-injector.sh vsphere-csi-driver
 
 .PHONY: update-kubevip-chart
 update-kubevip-chart:
@@ -39,6 +46,13 @@ $(KUSTOMIZE): ## Download kustomize locally if necessary.
 	curl -sfL "https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2F$(KUSTOMIZE_VERSION)/kustomize_$(KUSTOMIZE_VERSION)_$(OS)_$(ARCH).tar.gz" | tar zxv -C $(dir $@)
 	chmod +x $@
 	@echo "kustomize downloaded"
+
+$(YQ): ## Download yq locally if necessary.
+	@$(call say,Download yq)
+	curl -sfL https://github.com/mikefarah/yq/releases/download/v$(YQ_VERSION)/yq_$(OS)_$(ARCH) > $@
+	chmod +x $@
+	@echo "yq downloaded"
+
 
 ifndef NO_COLOR
 YELLOW=\033[0;33m

@@ -35,11 +35,35 @@ spec:
       - key: node.kubernetes.io/not-ready
         effect: NoSchedule
         operator: Exists
-      containers:
-      - name: kubectl
-        image: "{{ .Values.crdInstall.kubectl.registry }}/{{ .Values.crdInstall.kubectl.image }}:{{ .Values.crdInstall.kubectl.tag }}"
+      volumes:
+{{ $currentScope := . }}
+{{- range $path, $_ := .Files.Glob "files/**" }}
+    {{- with $currentScope }}
+      - name: {{ $path | base | trimSuffix ".yaml" }}
+        configMap:
+          name: {{ include "crdInstall" . }}-{{ $path | base | trimSuffix ".yaml" }}
+          items:
+          - key: content
+            path: {{ $path | base }}
+{{- end }}
+{{- end }}
+{{ $currentScope := . }}
+{{- range $path, $_ := .Files.Glob "polex/**" }}
+    {{- with $currentScope }}
+      - name: {{ $path | base | trimSuffix ".yaml" }}
+        configMap:
+          name: {{ include "crdInstall" . }}-{{ $path | base | trimSuffix ".yaml" }}
+          items:
+          - key: content
+            path: {{ $path | base }}
+{{- end }}
+{{- end }}
+      initContainers:
+      - name: install-crds
+        image: "{{ .Values.global.crdInstall.kubectl.registry }}/{{ .Values.global.crdInstall.kubectl.image }}:{{ .Values.global.crdInstall.kubectl.tag }}"
         command:
         - sh
+        args:
         - -c
         - |
           set -o errexit ; set -o xtrace ; set -o nounset
@@ -57,19 +81,39 @@ spec:
           mountPath: /data/{{ $path | base }}
           subPath: {{ $path | base }}
 {{- end }}
-        resources: {{- toYaml .Values.crdInstall.resources | nindent 10 }}
-      volumes:
-{{ $currentScope := . }}
-{{- range $path, $_ := .Files.Glob "files/**" }}
-    {{- with $currentScope }}
-      - name: {{ $path | base | trimSuffix ".yaml" }}
-        configMap:
-          name: {{ include "crdInstall" . }}-{{ $path | base | trimSuffix ".yaml" }}
-          items:
-          - key: content
-            path: {{ $path | base }}
+      containers:
+      - name: create-in-cluster-ip-pool
+        image: "{{ .Values.global.crdInstall.kubectl.registry }}/{{ .Values.global.crdInstall.kubectl.image }}:{{ .Values.global.crdInstall.kubectl.tag }}"
+        imagePullPolicy: IfNotPresent
+        securityContext:
+          readOnlyRootFilesystem: true
+          {{- with .Values.containerSecurityContext }}
+            {{- . | toYaml | nindent 10 }}
+          {{- end }}
+        volumeMounts:
+{{- range $path, $_ := .Files.Glob "polex/**" }}
+        - name: {{ $path | base | trimSuffix ".yaml" }}
+          mountPath: /data/{{ $path | base }}
+          subPath: {{ $path | base }}
 {{- end }}
-{{- end }}
+        command:
+        - sh
+        args:
+        - -c
+        - |
+          set -o nounset
+          for i in $(seq 20)
+          do
+            kubectl apply -f /data/ 2>&1 && exit 0
+            _sec=$(echo "1.5^$i" | bc)
+            echo "Waiting ${_sec} seconds.."
+            sleep ${_sec}
+          done
+          exit 1
+        {{- with .Values.containerSecurityContext }}
+        securityContext:
+          {{- . | toYaml | nindent 10 }}
+        {{- end }}
       restartPolicy: Never
   backoffLimit: 10
 {{- end }}

@@ -32,8 +32,8 @@ CRD installation labels
 {{- end -}}
 
 {{- define "crdInstallAnnotations" -}}
-"helm.sh/hook": "pre-install,pre-upgrade"
-"helm.sh/hook-delete-policy": "before-hook-creation,hook-succeeded,hook-failed"
+"helm.sh/hook": "post-install,post-upgrade"
+"helm.sh/hook-delete-policy": "before-hook-creation,hook-succeeded"
 {{- end -}}
 
 {{/* Create a label which can be used to select any orphaned crd-install hook resources */}}

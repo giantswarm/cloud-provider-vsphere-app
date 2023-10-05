@@ -1,10 +1,10 @@
 {{/*
-We have to create individual configmaps for each CRD - they exceed the total
+We have to create individual configmaps for each CR - they exceed the total
 allowed length for a configmap if they are combined.
 */}}
 {{ $currentScope := . }}
 {{- if .Values.global.crdInstall.enabled }}
-  {{- range $path, $_ := .Files.Glob "files/**" }}
+  {{- range $path, $_ := .Files.Glob "polex/**" }}
     {{- with $currentScope }}
 ---
 apiVersion: v1
@@ -21,7 +21,7 @@ metadata:
     role: {{ include "crdInstallSelector" . | quote }}
 data:
   content: |
-{{ tpl ($.Files.Get $path) . | indent 4 }}
+{{- tpl ($.Files.Get $path) . | indent 4 }}
     {{- end }}
   {{- end }}
 {{- end }}
