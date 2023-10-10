@@ -4,6 +4,7 @@ set -euo pipefail
 
 base_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
 chart_dir="./helm/cloud-provider-vsphere/charts/vsphere-csi-driver"
+KUSTOMIZE="${1:-kustomize}"
 
 cd "$base_dir"
 
@@ -24,7 +25,7 @@ cp -R \
 
 # Customizations
 
-kubectl kustomize "./config/vsphere-csi-driver" -o "./config/vsphere-csi-driver/tmp"
+${KUSTOMIZE} build "./config/vsphere-csi-driver" -o "./config/vsphere-csi-driver/tmp"
 
 find \
   "./config/vsphere-csi-driver/tmp/" \
