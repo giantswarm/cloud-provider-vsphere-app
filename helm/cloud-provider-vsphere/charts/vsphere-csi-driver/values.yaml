@@ -53,3 +53,9 @@ storageClass:
     isDefault: false
     vcdStorageProfileName: "vSAN Default Storage Policy"
     fileSystem: "ext4"
+
+containerSecurityContext:
+  allowPrivilegeEscalation: false
+  runAsNonRoot: true
+  seccompProfile:
+    type: RuntimeDefault
