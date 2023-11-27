@@ -21,10 +21,10 @@ cloud-provider-for-vsphere:
 kube-vip:
   enabled: true
   env:
-    vip_interface: "eth0"
+    vip_interface: "ens192"
   image:
     repository: docker.io/giantswarm/kube-vip
-    tag: "v0.5.11"
+    tag: "v0.6.3"
   nameOverride: kube-vip-svc-lb
   tolerations:
   - effect: NoSchedule
