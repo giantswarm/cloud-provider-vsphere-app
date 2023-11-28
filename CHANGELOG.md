@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Switch default `vip_interface` to `ens192` for Flatcar.
+- Bump `kube-vip` version to `v0.6.3`. 
+
 ## [1.5.1] - 2023-11-23
 
 ## [1.5.0] - 2023-07-05
