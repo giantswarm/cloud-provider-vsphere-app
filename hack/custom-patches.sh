@@ -18,3 +18,9 @@ ${YQ} e '.spec.template.spec.securityContext.remove-this-key="'"
 "'"' ${f} > ${f}.tmp
 cat ${f}.tmp | grep -v 'remove-this-key' > ${f}
 rm -rf ${f}.tmp
+
+# Replace the upstream psp condition with our own.
+
+cpi_psp_file="helm/cloud-provider-vsphere/charts/cloud-provider-vsphere/templates/podsecuritypolicy.yaml"
+
+sed -i 's/{{- if \.Values\.podSecurityPolicy\.enabled }}/{{- if not .Values.global.podSecurityStandards.enforced }}/g' "$cpi_psp_file"
