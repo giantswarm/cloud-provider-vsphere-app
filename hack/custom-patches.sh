@@ -21,6 +21,6 @@ rm -rf ${f}.tmp
 
 # Replace the upstream psp condition with our own.
 
-cpi_psp_file="helm/cloud-provider-vsphere/charts/cloud-provider-vsphere/templates/podsecuritypolicy.yaml"
+cpi_psp_file="helm/cloud-provider-vsphere/charts/cloud-provider-for-vsphere/templates/podsecuritypolicy.yaml"
 
 sed -i 's/{{- if \.Values\.podSecurityPolicy\.enabled }}/{{- if not .Values.global.podSecurityStandards.enforced }}/g' "$cpi_psp_file"
