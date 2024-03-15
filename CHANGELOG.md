@@ -7,12 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Pull images from Azure CR.
+
 ## [1.6.0] - 2024-02-27
 
 ### Changed
 
 - Switch default `vip_interface` to `ens192` for Flatcar.
-- Bump `kube-vip` version to `v0.6.3`. 
+- Bump `kube-vip` version to `v0.6.3`.
 
 ## [1.5.1] - 2023-11-23
 
@@ -43,7 +47,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Move CPI into a sub chart.
 - Add CSI as a sub chart.
 - Improve UX and security. Reorganize values.yaml structure.
- 
+
 ## [1.3.0] - 2022-05-17
 
 ### Fixed
