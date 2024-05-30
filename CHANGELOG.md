@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Pull images from Azure CR.
+- Update image tags for 1.26 compatibility.
 
 ## [1.6.0] - 2024-02-27
 

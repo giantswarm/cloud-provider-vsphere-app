@@ -140,9 +140,11 @@ $ helm install vsphere-cpi \
 
 Alternatively, a YAML file that specifies the values for the parameters can be provided while installing the chart.
 
-### Image tags
+### Image tags compatibility matrix
 
-vSphere CPI offers a multitude of [tags](https://github.com/kubernetes/cloud-provider-vsphere/releases) for the various components used in this chart.
+* Container Storage Interface: https://docs.vmware.com/en/VMware-vSphere-Container-Storage-Plug-in/3.0/rn/vmware-vsphere-container-storage-plugin-30-release-notes/index.html#vSphere%20Container%20Storage%20Plug-in%203.1.x
+
+* Cloud Provider Interface: https://github.com/kubernetes/cloud-provider-vsphere?tab=readme-ov-file#compatibility-with-kubernetes
 
 ## Developer Releasing Guide
 
