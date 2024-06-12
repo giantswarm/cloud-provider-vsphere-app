@@ -1,7 +1,7 @@
 apiVersion: v2
 appVersion: 1.27.0
 description: A Helm chart for vSphere Cloud Provider Interface Manager (CPI)
-name: vsphere-cpi
+name: cloud-provider-for-vsphere
 version: 1.27.0
 keywords:
   - vsphere
