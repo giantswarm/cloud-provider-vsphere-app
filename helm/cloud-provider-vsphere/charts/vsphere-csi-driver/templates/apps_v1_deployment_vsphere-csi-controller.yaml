@@ -123,7 +123,6 @@ spec:
               protocol: TCP
           securityContext:
             runAsGroup: 65532
-            runAsNonRoot: true
             runAsUser: 65532
               {{- with .Values.containerSecurityContext }}
                 {{- . | toYaml | nindent 12 }}
@@ -179,7 +178,6 @@ spec:
               protocol: TCP
           securityContext:
             runAsGroup: 65532
-            runAsNonRoot: true
             runAsUser: 65532
               {{- with .Values.containerSecurityContext }}
                 {{- . | toYaml | nindent 12 }}
