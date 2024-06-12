@@ -113,6 +113,10 @@ appVersion: 1.27.0
 version: 1.27.0
 ```
 
+### Update parent chart's dependencies
+
+- Update each chart's version to use in the parent `Chart.yaml` in [templates/Chart.yaml](templates/Chart.yaml).
+
 ### Update the charts
 
 - Run `make all`
