@@ -9,8 +9,8 @@ chart_dir="./helm/cloud-provider-vsphere/charts/cloud-provider-for-vsphere"
 cd "$base_dir"
 
 "./hack/clone-git-repo.sh" \
-    "giantswarm/cloud-provider-vsphere" \
-    "improve-helm-chart" \
+    "/kubernetes/cloud-provider-vsphere" \
+    "release-1.27" \
     "cloud-provider-vsphere"
 
 rm -Rf "$chart_dir"

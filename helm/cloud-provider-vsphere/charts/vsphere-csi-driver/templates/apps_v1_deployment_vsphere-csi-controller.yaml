@@ -6,7 +6,7 @@ metadata:
   name: vsphere-csi-controller
   namespace: '{{ .Release.Namespace }}'
 spec:
-  replicas: 1
+  replicas: '{{ .Values.controllerDeployment.replicas }}'
   selector:
     matchLabels:
       app: vsphere-csi-controller
@@ -37,12 +37,15 @@ spec:
             - --timeout=300s
             - --csi-address=$(ADDRESS)
             - --leader-election
+            - --leader-election-lease-duration=120s
+            - --leader-election-renew-deadline=60s
+            - --leader-election-retry-period=30s
             - --kube-api-qps=100
             - --kube-api-burst=100
           env:
             - name: ADDRESS
               value: /csi/csi.sock
-          image: '{{ .Values.controllerDeployment.csiAttacher.image}}:{{ .Values.controllerDeployment.csiAttacher.tag}}'
+          image: registry.k8s.io/sig-storage/csi-attacher:v4.5.0
           name: csi-attacher
           volumeMounts:
             - mountPath: /csi
@@ -59,10 +62,13 @@ spec:
             - --kube-api-qps=100
             - --kube-api-burst=100
             - --leader-election
+            - --leader-election-lease-duration=120s
+            - --leader-election-renew-deadline=60s
+            - --leader-election-retry-period=30s
           env:
             - name: ADDRESS
               value: /csi/csi.sock
-          image: '{{ .Values.controllerDeployment.csiResizer.image}}:{{ .Values.controllerDeployment.csiResizer.tag}}'
+          image: registry.k8s.io/sig-storage/csi-resizer:v1.10.0
           name: csi-resizer
           volumeMounts:
             - mountPath: /csi
@@ -91,20 +97,22 @@ spec:
               value: "100"
             - name: INCLUSTER_CLIENT_BURST
               value: "100"
+            - name: GODEBUG
+              value: x509sha1=1,tlsmaxrsasize=16384
             - name: CSI_NAMESPACE
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.namespace
-          image: '{{ .Values.controllerDeployment.csiController.image}}:{{ .Values.controllerDeployment.csiController.tag}}'
+          image: gcr.io/cloud-provider-vsphere/csi/release/driver:v3.2.0
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 3
             httpGet:
               path: /healthz
               port: healthz
-            initialDelaySeconds: 10
-            periodSeconds: 5
-            timeoutSeconds: 3
+            initialDelaySeconds: 30
+            periodSeconds: 180
+            timeoutSeconds: 10
           name: vsphere-csi-controller
           ports:
             - containerPort: 9808
@@ -113,20 +121,23 @@ spec:
             - containerPort: 2112
               name: prometheus
               protocol: TCP
+          securityContext:
+            runAsGroup: 65532
+            runAsNonRoot: true
+            runAsUser: 65532
+              {{- with .Values.containerSecurityContext }}
+                {{- . | toYaml | nindent 12 }}
+              {{- end }}
           volumeMounts:
             - mountPath: /etc/cloud
               name: vsphere-config-volume
               readOnly: true
             - mountPath: /csi
               name: socket-dir
-          securityContext:
-              {{- with .Values.containerSecurityContext }}
-                {{- . | toYaml | nindent 12 }}
-              {{- end }}
         - args:
             - --v=4
             - --csi-address=/csi/csi.sock
-          image: '{{ .Values.controllerDeployment.livenessProbe.image}}:{{ .Values.controllerDeployment.livenessProbe.tag}}'
+          image: registry.k8s.io/sig-storage/livenessprobe:v2.12.0
           name: liveness-probe
           volumeMounts:
             - mountPath: /csi
@@ -137,6 +148,9 @@ spec:
               {{- end }}
         - args:
             - --leader-election
+            - --leader-election-lease-duration=30s
+            - --leader-election-renew-deadline=20s
+            - --leader-election-retry-period=10s
             - --fss-name=internal-feature-states.csi.vsphere.vmware.com
             - --fss-namespace=$(CSI_NAMESPACE)
           env:
@@ -151,26 +165,29 @@ spec:
             - name: INCLUSTER_CLIENT_BURST
               value: "100"
             - name: GODEBUG
-              value: x509sha1=1
+              value: x509sha1=1,tlsmaxrsasize=16384
             - name: CSI_NAMESPACE
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.namespace
-          image: '{{ .Values.controllerDeployment.syncer.image}}:{{ .Values.controllerDeployment.syncer.tag}}'
+          image: gcr.io/cloud-provider-vsphere/csi/release/syncer:v3.2.0
           imagePullPolicy: Always
           name: vsphere-syncer
           ports:
             - containerPort: 2113
               name: prometheus
               protocol: TCP
+          securityContext:
+            runAsGroup: 65532
+            runAsNonRoot: true
+            runAsUser: 65532
+              {{- with .Values.containerSecurityContext }}
+                {{- . | toYaml | nindent 12 }}
+              {{- end }}
           volumeMounts:
             - mountPath: /etc/cloud
               name: vsphere-config-volume
               readOnly: true
-          securityContext:
-              {{- with .Values.containerSecurityContext }}
-                {{- . | toYaml | nindent 12 }}
-              {{- end }}
         - args:
             - --v=4
             - --timeout=300s
@@ -178,11 +195,14 @@ spec:
             - --kube-api-qps=100
             - --kube-api-burst=100
             - --leader-election
+            - --leader-election-lease-duration=120s
+            - --leader-election-renew-deadline=60s
+            - --leader-election-retry-period=30s
             - --default-fstype=ext4
           env:
             - name: ADDRESS
               value: /csi/csi.sock
-          image: '{{ .Values.controllerDeployment.csiProvisioner.image}}:{{ .Values.controllerDeployment.csiProvisioner.tag}}'
+          image: registry.k8s.io/sig-storage/csi-provisioner:v4.0.0
           name: csi-provisioner
           volumeMounts:
             - mountPath: /csi
@@ -198,10 +218,13 @@ spec:
             - --timeout=300s
             - --csi-address=$(ADDRESS)
             - --leader-election
+            - --leader-election-lease-duration=120s
+            - --leader-election-renew-deadline=60s
+            - --leader-election-retry-period=30s
           env:
             - name: ADDRESS
               value: /csi/csi.sock
-          image: '{{ .Values.controllerDeployment.csiSnapshotter.image}}:{{ .Values.controllerDeployment.csiSnapshotter.tag}}'
+          image: registry.k8s.io/sig-storage/csi-snapshotter:v7.0.1
           name: csi-snapshotter
           volumeMounts:
             - mountPath: /csi
@@ -213,6 +236,7 @@ spec:
       dnsPolicy: Default
       nodeSelector:
         node-role.kubernetes.io/control-plane: ""
+      priorityClassName: system-cluster-critical
       serviceAccountName: vsphere-csi-controller
       tolerations:
         - effect: NoSchedule

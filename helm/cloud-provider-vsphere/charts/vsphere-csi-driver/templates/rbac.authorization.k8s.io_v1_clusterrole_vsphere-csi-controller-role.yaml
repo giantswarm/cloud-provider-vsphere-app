@@ -10,11 +10,19 @@ rules:
   resources:
   - nodes
   - pods
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - ""
+  resources:
   - configmaps
   verbs:
   - get
   - list
   - watch
+  - create
 - apiGroups:
   - ""
   resources:
@@ -102,6 +110,16 @@ rules:
   - list
   - watch
   - update
+  - delete
+- apiGroups:
+  - cns.vmware.com
+  resources:
+  - cnsvolumeinfoes
+  verbs:
+  - create
+  - get
+  - list
+  - watch
   - delete
 - apiGroups:
   - apiextensions.k8s.io

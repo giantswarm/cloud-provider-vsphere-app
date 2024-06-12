@@ -10,7 +10,7 @@ cd "$base_dir"
 
 "./hack/clone-git-repo.sh" \
   "kubernetes-sigs/vsphere-csi-driver" \
-  "v2.7.1" \
+  "v3.2.0" \
   "vsphere-csi-driver"
 
 rm -Rf "$chart_dir"
