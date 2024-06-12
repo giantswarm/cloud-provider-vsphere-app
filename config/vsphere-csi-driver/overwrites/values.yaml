@@ -22,8 +22,9 @@ storageClass:
     vcdStorageProfileName: "vSAN Default Storage Policy"
     fileSystem: "ext4"
 
-topologyPreferentialDatastores:
-  enabled: false
+internalFeatureStates:
+  topologyPreferentialDatastores:
+    enabled: false
 
 containerSecurityContext:
   allowPrivilegeEscalation: false
