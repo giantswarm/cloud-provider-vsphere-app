@@ -8,9 +8,6 @@ config:
   zone: ""
   thumbprint: ""
 
-controllerDeployment:
-  replicas: 1
-
 storageClass:
   enabled: true
   delete:
