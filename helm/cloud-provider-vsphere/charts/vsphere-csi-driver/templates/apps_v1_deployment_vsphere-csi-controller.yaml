@@ -6,7 +6,7 @@ metadata:
   name: vsphere-csi-controller
   namespace: '{{ .Release.Namespace }}'
 spec:
-  replicas: '{{ .Values.controllerDeployment.replicas }}'
+  replicas: '{{ int .Values.controllerDeployment.replicas }}'
   selector:
     matchLabels:
       app: vsphere-csi-controller

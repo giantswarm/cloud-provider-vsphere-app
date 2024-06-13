@@ -4,4 +4,4 @@ metadata:
   name: vsphere-csi-controller
   namespace: vmware-system-csi
 spec:
-  replicas: "{{ .Values.controllerDeployment.replicas }}"
+  replicas: "{{ int .Values.controllerDeployment.replicas }}"
