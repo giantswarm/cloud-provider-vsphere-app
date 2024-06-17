@@ -21,7 +21,12 @@ ${YQ} eval '.spec.template.spec.securityContext.remove-this-key="'"
 
 # Remove existing runAsNonRoot keys added upstream since we set it in the chart's values.
 # https://github.com/giantswarm/cloud-provider-vsphere-app/blob/6556f98de46ff45b3a8ce9080752ca1050bbee0b/helm/cloud-provider-vsphere/charts/vsphere-csi-driver/values.yaml#L59
-cat ${csi_controller_manifest}.tmp | grep -v 'remove-this-key' | grep -v 'runAsNonRoot' > ${csi_controller_manifest}
+cat ${csi_controller_manifest}.tmp \
+  | grep -v 'remove-this-key' \
+  | grep -v 'runAsNonRoot' \
+  | grep -v 'runAsUser: 65532' \
+  | grep -v 'runAsGroup: 65532' \
+  > ${csi_controller_manifest}
 
 rm -rf ${csi_controller_manifest}.tmp
 

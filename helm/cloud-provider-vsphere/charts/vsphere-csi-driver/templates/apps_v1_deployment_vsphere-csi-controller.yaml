@@ -122,8 +122,6 @@ spec:
               name: prometheus
               protocol: TCP
           securityContext:
-            runAsGroup: 65532
-            runAsUser: 65532
               {{- with .Values.containerSecurityContext }}
                 {{- . | toYaml | nindent 12 }}
               {{- end }}
@@ -177,8 +175,6 @@ spec:
               name: prometheus
               protocol: TCP
           securityContext:
-            runAsGroup: 65532
-            runAsUser: 65532
               {{- with .Values.containerSecurityContext }}
                 {{- . | toYaml | nindent 12 }}
               {{- end }}
