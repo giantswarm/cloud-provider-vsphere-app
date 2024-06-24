@@ -7,6 +7,7 @@ set -o pipefail
 YQ="./bin/yq"
 
 csi_controller_manifest="helm/cloud-provider-vsphere/charts/vsphere-csi-driver/templates/apps_v1_deployment_vsphere-csi-controller.yaml"
+csi_nodeplugin_manifest="helm/cloud-provider-vsphere/charts/vsphere-csi-driver/templates/apps_v1_daemonset_vsphere-csi-node.yaml"
 
 # Add SecurityContext to the containers.
 ${YQ} eval '.spec.template.spec.securityContext.remove-this-key="'"
@@ -34,3 +35,10 @@ rm -rf ${csi_controller_manifest}.tmp
 cpi_psp_file="helm/cloud-provider-vsphere/charts/cloud-provider-for-vsphere/templates/podsecuritypolicy.yaml"
 
 sed -i 's/{{- if \.Values\.podSecurityPolicy\.enabled }}/{{- if not .Values.global.podSecurityStandards.enforced }}/g' "$cpi_psp_file"
+
+# Replace image registries with our own in the manifests.
+echo "Replacing image registries with Giant Swarm's"
+
+"./hack/replace-image-registries.sh" "$csi_controller_manifest" "syncer" "csi-vsphere-syncer"
+"./hack/replace-image-registries.sh" "$csi_controller_manifest" "driver" "csi-vsphere-driver"
+"./hack/replace-image-registries.sh" "$csi_nodeplugin_manifest" "driver" "csi-vsphere-driver"

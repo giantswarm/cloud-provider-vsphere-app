@@ -3,13 +3,9 @@
 # Declare variables to be passed into your templates.
 
 replicasCount: 1
-
 image:
   repository: kubevip/kube-vip-cloud-provider
   pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: "v0.0.4"
-
 resources:
   requests:
     cpu: 50m
@@ -17,13 +13,11 @@ resources:
   limits:
     cpu: 100m
     memory: 128Mi
-
 tolerations:
   - key: node-role.kubernetes.io/master
     effect: NoSchedule
   - key: node-role.kubernetes.io/control-plane
     effect: NoSchedule
-
 affinity:
   nodeAffinity:
     preferredDuringSchedulingIgnoredDuringExecution:

@@ -24,7 +24,6 @@ kube-vip:
     vip_interface: "ens192"
   image:
     repository: gsoci.azurecr.io/giantswarm/kube-vip
-    tag: "v0.6.3"
   nameOverride: kube-vip-svc-lb
   tolerations:
   - effect: NoSchedule
@@ -40,7 +39,6 @@ kube-vip-cloud-provider:
   cidrGlobal: ""
   image:
     repository: gsoci.azurecr.io/giantswarm/kube-vip-cloud-provider
-    tag: "v0.0.4"
   nameOverride: kube-vip-cloud-provider
 
 vsphere-csi-driver:
@@ -52,30 +50,6 @@ vsphere-csi-driver:
     runAsNonRoot: false
     seccompProfile:
       type: RuntimeDefault
-
-  controllerDeployment:
-    csiAttacher:
-      image: gsoci.azurecr.io/giantswarm/csi-attacher
-    csiResizer:
-      image: gsoci.azurecr.io/giantswarm/csi-resizer
-    csiController:
-      image: gsoci.azurecr.io/giantswarm/csi-vsphere-driver
-    livenessProbe:
-      image: gsoci.azurecr.io/giantswarm/livenessprobe
-    syncer:
-      image: gsoci.azurecr.io/giantswarm/csi-vsphere-syncer
-    csiProvisioner:
-      image: gsoci.azurecr.io/giantswarm/csi-provisioner
-    csiSnapshotter:
-      image: gsoci.azurecr.io/giantswarm/csi-snapshotter
-
-  nodeDaemonset:
-    csiNode:
-      image: gsoci.azurecr.io/giantswarm/csi-vsphere-driver
-    livenessProbe:
-      image: gsoci.azurecr.io/giantswarm/livenessprobe
-    nodeDriverRegistrar:
-      image: gsoci.azurecr.io/giantswarm/csi-node-driver-registrar
 
   podSecurityContext:
     runAsNonRoot: false

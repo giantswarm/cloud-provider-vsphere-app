@@ -24,3 +24,7 @@ cp -R \
 cp -R \
   "./config/kube-vip-cloud-provider/overwrites/." \
   "$chart_dir/"
+
+# Remove default values to match kube-vip chart behaviour and rely on appVersion.
+# Won't be needed anymore if this PR gets merged: https://github.com/kube-vip/helm-charts/pull/35
+yq e 'del(.image.tag)' -i "helm/cloud-provider-vsphere/charts/kube-vip-cloud-provider/values.yaml"
