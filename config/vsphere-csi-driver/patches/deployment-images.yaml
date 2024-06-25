@@ -5,21 +5,3 @@ metadata:
   namespace: vmware-system-csi
 spec:
   replicas: 1
-  template:
-    spec:
-      containers:
-      - image: "{{ .Values.controllerDeployment.csiAttacher.image}}:{{ .Values.controllerDeployment.csiAttacher.tag}}"
-        name: csi-attacher
-      - image: "{{ .Values.controllerDeployment.csiResizer.image}}:{{ .Values.controllerDeployment.csiResizer.tag}}"
-        name: csi-resizer
-      - image: "{{ .Values.controllerDeployment.csiController.image}}:{{ .Values.controllerDeployment.csiController.tag}}"
-        name: vsphere-csi-controller
-      - image: "{{ .Values.controllerDeployment.livenessProbe.image}}:{{ .Values.controllerDeployment.livenessProbe.tag}}"
-        name: liveness-probe
-      - image: "{{ .Values.controllerDeployment.syncer.image}}:{{ .Values.controllerDeployment.syncer.tag}}"
-        name: vsphere-syncer
-      - image: "{{ .Values.controllerDeployment.csiProvisioner.image}}:{{ .Values.controllerDeployment.csiProvisioner.tag}}"
-        name: csi-provisioner
-      - image: "{{ .Values.controllerDeployment.csiSnapshotter.image}}:{{ .Values.controllerDeployment.csiSnapshotter.tag}}"
-        name: csi-snapshotter
- 

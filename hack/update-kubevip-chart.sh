@@ -10,7 +10,7 @@ cd "$base_dir"
 
 "./hack/clone-git-repo.sh" \
     "kube-vip/helm-charts" \
-    "kube-vip-0.4.4" \
+    "kube-vip-0.6.1" \
     "kube-vip"
 
 rm -Rf "$chart_dir"

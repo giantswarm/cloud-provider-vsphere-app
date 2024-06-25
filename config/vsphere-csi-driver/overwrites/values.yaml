@@ -8,41 +8,6 @@ config:
   zone: ""
   thumbprint: ""
 
-controllerDeployment:
-  replicas: 1
-  csiAttacher:
-    image: docker.io/giantswarm/csi-attacher
-    tag: v3.5.0
-  csiResizer:
-    image: docker.io/giantswarm/csi-resizer
-    tag: v1.5.0
-  csiController:
-    image: docker.io/giantswarm/csi-vsphere-driver
-    tag: v2.7.1
-  livenessProbe:
-    image: docker.io/giantswarm/livenessprobe
-    tag: v2.7.0
-  syncer:
-    image: docker.io/giantswarm/csi-vsphere-syncer
-    tag: v2.7.1
-  csiProvisioner:
-    image: docker.io/giantswarm/csi-provisioner
-    tag: v3.2.1
-  csiSnapshotter:
-    image: docker.io/giantswarm/csi-snapshotter
-    tag: v6.0.1
-
-nodeDaemonset:
-  nodeDriverRegistrar:
-    image: docker.io/giantswarm/csi-node-driver-registrar
-    tag: v2.5.1
-  csiNode:
-    image: docker.io/giantswarm/csi-vsphere-driver
-    tag: v2.7.1
-  livenessProbe:
-    image: docker.io/giantswarm/livenessprobe
-    tag: v2.7.0
-
 storageClass:
   enabled: true
   delete:
@@ -54,8 +19,14 @@ storageClass:
     vcdStorageProfileName: "vSAN Default Storage Policy"
     fileSystem: "ext4"
 
+internalFeatureStates:
+  topologyPreferentialDatastores:
+    enabled: false
+
 containerSecurityContext:
   allowPrivilegeEscalation: false
   runAsNonRoot: true
+  runAsUser: 65532
+  runAsGroup: 65532
   seccompProfile:
     type: RuntimeDefault

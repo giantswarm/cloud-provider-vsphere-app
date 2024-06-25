@@ -13,10 +13,22 @@ spec:
     metadata:
       labels:
         {{- include "kube-vip.selectorLabels" . | nindent 8 }}
+      {{- with .Values.extraLabels }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
     spec:
       containers:
       - args:
           - manager
+          {{- if kindIs "map" .Values.extraArgs }}
+          {{- range $key, $value := .Values.extraArgs }}
+          {{- if not (kindIs "invalid" $value) }}
+          - --{{ $key }}={{ tpl ($value | toString) $ }}
+          {{- else }}
+          - --{{ $key }}
+          {{- end }}
+          {{- end }}
+          {{- end }}
         env:
           {{- if eq .Values.env.cp_enable "true" }}
           - name: vip_address
