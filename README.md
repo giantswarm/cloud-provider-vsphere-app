@@ -72,7 +72,7 @@ It is planned to automate chart creation with `kustomize` to be able to update e
 ### vSphere CSI driver
 
 > [!NOTE]
-> There is no upstream Helm chart for the CSI. There are a few overwrites and patches to the chart. Any changes should be written in `/config/vsphere-csi-driver`.
+> There is no upstream Helm chart for the CSI, we generate it from the manifests and we apply customizations. There are a few overwrites and patches in the `/config/vsphere-csi-driver` folder.
 
 - First off, find the latest CSI version that is compatible with the Kubernetes version of the cluster it will run in. You will find this in the [Release Notes](https://docs.vmware.com/en/VMware-vSphere-Container-Storage-Plug-in/3.0/rn/vmware-vsphere-container-storage-plugin-30-release-notes/index.html). For instance, vSphere CSI `v3.2.0` is compatible with Kubernetes `1.27` to `1.29`. (You can check the tag exists in the [upstream repo](https://github.com/kubernetes-sigs/vsphere-csi-driver/tags))
 - Edit [update-csi-chart.sh](hack/update-csi-chart.sh) here and change the branch value under `./hack/clone-git-repo.sh` to reflect the branch version. For instance:
@@ -94,9 +94,9 @@ version: 3.2.0
 ### vSphere Cloud Provider
 
 > [!NOTE]
-> The vSphere Cloud Provider versions are aligned with Kubernetes versions for support.
+> The vSphere Cloud Provider versions are aligned with Kubernetes versions for support (e.g. CPI v1.27.0 for Kubernetes v1.27).
 
-- In the [upstream repo](https://github.com/kubernetes/cloud-provider-vsphere/tree/release-1.27), look for the branch of the version to update to `release-x.yy`.
+- In the [upstream repo](https://github.com/kubernetes/cloud-provider-vsphere/tree/release-1.27), look for the branch of the version to update to (`release-x.yy`).
 - Edit [update-cpi-chart.sh](hack/update-cpi-chart.sh) here and change the branch value under `./hack/clone-git-repo.sh` to reflect the branch version. For instance:
 
 ``` sh
@@ -119,4 +119,5 @@ version: 1.27.0
 
 ### Update the charts
 
-- Run `make all`
+- Run `make all`.
+- Check the diffs.
