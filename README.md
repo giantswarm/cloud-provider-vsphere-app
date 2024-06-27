@@ -4,6 +4,12 @@
 
 This app contains CPI and CSI for CAPV clusters. 
 
+| Cloud Provider vSphere app | Kubernetes version |
+| -------------------------- | ------------------ |
+| 1.9.x | 1.29.x |
+| 1.8.x | 1.28.x |
+| 1.7.x | 1.27.x |
+
 ## How to install
 
 - Clone this repository. 
@@ -96,7 +102,7 @@ version: 3.2.0
 > [!NOTE]
 > The vSphere Cloud Provider versions are aligned with Kubernetes versions for support (e.g. CPI v1.27.0 for Kubernetes v1.27).
 
-- In the [upstream repo](https://github.com/kubernetes/cloud-provider-vsphere/tree/release-1.27), look for the branch of the version to update to (`release-x.yy`). You may have to use the tag instead of the release as they sometimes references images that don't (yet?) exist in the registry.
+- In the [upstream repo](https://github.com/kubernetes/cloud-provider-vsphere/tree/release-1.27), look for the branch of the version to update to (`release-x.yy`).
 - Edit [update-cpi-chart.sh](hack/update-cpi-chart.sh) here and change the branch value under `./hack/clone-git-repo.sh` to reflect the branch version. For instance:
 
 ``` sh
