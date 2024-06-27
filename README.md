@@ -96,7 +96,7 @@ version: 3.2.0
 > [!NOTE]
 > The vSphere Cloud Provider versions are aligned with Kubernetes versions for support (e.g. CPI v1.27.0 for Kubernetes v1.27).
 
-- In the [upstream repo](https://github.com/kubernetes/cloud-provider-vsphere/tree/release-1.27), look for the branch of the version to update to (`release-x.yy`).
+- In the [upstream repo](https://github.com/kubernetes/cloud-provider-vsphere/tree/release-1.27), look for the branch of the version to update to (`release-x.yy`). You may have to use the tag instead of the release as they sometimes references images that don't (yet?) exist in the registry.
 - Edit [update-cpi-chart.sh](hack/update-cpi-chart.sh) here and change the branch value under `./hack/clone-git-repo.sh` to reflect the branch version. For instance:
 
 ``` sh
