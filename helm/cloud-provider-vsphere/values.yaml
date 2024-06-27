@@ -16,7 +16,7 @@ global:
 
 cloud-provider-for-vsphere:
   daemonset:
-    image: gsoci.azurecr.io/giantswarm/cpi-vsphere-manager
+    image: gsoci.azurecr.io/giantswarm/cloud-provider-vsphere
 
 kube-vip:
   enabled: true
