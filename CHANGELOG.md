@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Update vSphere CPI to `1.29` for Kubernetes 1.29 compatibility.
+
 ## [1.8.0] - 2024-07-02
 
 ### Changed
