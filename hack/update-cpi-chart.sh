@@ -10,7 +10,7 @@ cd "$base_dir"
 
 "./hack/clone-git-repo.sh" \
     "/kubernetes/cloud-provider-vsphere" \
-    "release-1.27" \
+    "v1.28.1" \
     "cloud-provider-vsphere"
 
 rm -Rf "$chart_dir"
