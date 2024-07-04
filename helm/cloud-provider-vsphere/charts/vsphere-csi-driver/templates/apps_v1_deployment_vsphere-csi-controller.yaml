@@ -22,6 +22,18 @@ spec:
         role: vsphere-csi
     spec:
       affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: node-role.kubernetes.io/control-plane
+                    operator: Exists
+              - matchExpressions:
+                  - key: node-role.kubernetes.io/controlplane
+                    operator: Exists
+              - matchExpressions:
+                  - key: node-role.kubernetes.io/master
+                    operator: Exists
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             - labelSelector:
@@ -45,7 +57,7 @@ spec:
           env:
             - name: ADDRESS
               value: /csi/csi.sock
-          image: gsoci.azurecr.io/giantswarm/csi-attacher:v4.5.0
+          image: gsoci.azurecr.io/giantswarm/csi-attacher:v4.5.1
           name: csi-attacher
           volumeMounts:
             - mountPath: /csi
@@ -68,7 +80,7 @@ spec:
           env:
             - name: ADDRESS
               value: /csi/csi.sock
-          image: gsoci.azurecr.io/giantswarm/csi-resizer:v1.10.0
+          image: gsoci.azurecr.io/giantswarm/csi-resizer:v1.10.1
           name: csi-resizer
           volumeMounts:
             - mountPath: /csi
@@ -97,13 +109,11 @@ spec:
               value: "100"
             - name: INCLUSTER_CLIENT_BURST
               value: "100"
-            - name: GODEBUG
-              value: x509sha1=1,tlsmaxrsasize=16384
             - name: CSI_NAMESPACE
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.namespace
-          image: gsoci.azurecr.io/giantswarm/csi-vsphere-driver:v3.2.0
+          image: gsoci.azurecr.io/giantswarm/csi-vsphere-driver:v3.3.0
           imagePullPolicy: Always
           livenessProbe:
             failureThreshold: 3
@@ -161,13 +171,11 @@ spec:
               value: "100"
             - name: INCLUSTER_CLIENT_BURST
               value: "100"
-            - name: GODEBUG
-              value: x509sha1=1,tlsmaxrsasize=16384
             - name: CSI_NAMESPACE
               valueFrom:
                 fieldRef:
                   fieldPath: metadata.namespace
-          image: gsoci.azurecr.io/giantswarm/csi-vsphere-syncer:v3.2.0
+          image: gsoci.azurecr.io/giantswarm/csi-vsphere-syncer:v3.3.0
           imagePullPolicy: Always
           name: vsphere-syncer
           ports:
@@ -196,7 +204,7 @@ spec:
           env:
             - name: ADDRESS
               value: /csi/csi.sock
-          image: gsoci.azurecr.io/giantswarm/csi-provisioner:v4.0.0
+          image: gsoci.azurecr.io/giantswarm/csi-provisioner:v4.0.1
           name: csi-provisioner
           volumeMounts:
             - mountPath: /csi
@@ -218,7 +226,7 @@ spec:
           env:
             - name: ADDRESS
               value: /csi/csi.sock
-          image: gsoci.azurecr.io/giantswarm/csi-snapshotter:v7.0.1
+          image: gsoci.azurecr.io/giantswarm/csi-snapshotter:v7.0.2
           name: csi-snapshotter
           volumeMounts:
             - mountPath: /csi
@@ -228,8 +236,6 @@ spec:
                 {{- . | toYaml | nindent 12 }}
               {{- end }}
       dnsPolicy: Default
-      nodeSelector:
-        node-role.kubernetes.io/control-plane: ""
       priorityClassName: system-cluster-critical
       serviceAccountName: vsphere-csi-controller
       tolerations:

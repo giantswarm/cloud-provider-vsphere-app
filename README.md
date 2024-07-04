@@ -6,6 +6,7 @@ This app contains CPI and CSI for CAPV clusters.
 
 | Cloud Provider vSphere app | Kubernetes version |
 | -------------------------- | ------------------ |
+| 1.10.x | 1.30.x |
 | 1.9.x | 1.29.x |
 | 1.8.x | 1.28.x |
 | 1.7.x | 1.27.x |
