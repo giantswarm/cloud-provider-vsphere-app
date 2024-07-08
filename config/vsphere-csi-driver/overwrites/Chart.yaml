@@ -1,7 +1,7 @@
 apiVersion: v2
 name: vsphere-csi-driver
-appVersion: 3.2.0
-version: 3.2.0
+appVersion: 3.3.0
+version: 3.3.0
 description: A Helm chart for vSphere Cloud Provider Interface Manager (CPI)
 home: https://github.com/giantswarm/cloud-provider-vsphere-app
 keywords:
