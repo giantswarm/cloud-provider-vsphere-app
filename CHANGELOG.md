@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.10.0] - 2024-07-08
+
 ### Changed
 
 - Update vSphere CPI to `1.30` for Kubernetes 1.30 compatibility.
@@ -104,7 +106,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Add upstream CPI chart at 1.22.6
 
-[Unreleased]: https://github.com/giantswarm/cloud-provider-vsphere-app/compare/v1.9.0...HEAD
+[Unreleased]: https://github.com/giantswarm/cloud-provider-vsphere-app/compare/v1.10.0...HEAD
+[1.10.0]: https://github.com/giantswarm/cloud-provider-vsphere-app/compare/v1.9.0...v1.10.0
 [1.9.0]: https://github.com/giantswarm/cloud-provider-vsphere-app/compare/v1.8.0...v1.9.0
 [1.8.0]: https://github.com/giantswarm/cloud-provider-vsphere-app/compare/v1.7.0...v1.8.0
 [1.7.0]: https://github.com/giantswarm/cloud-provider-vsphere-app/compare/v1.6.0...v1.7.0
