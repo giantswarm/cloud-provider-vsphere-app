@@ -10,14 +10,9 @@ config:
 
 storageClass:
   enabled: true
-  delete:
-    isDefault: true
-    vcdStorageProfileName: "vSAN Default Storage Policy"
-    fileSystem: "ext4"
-  retain:
-    isDefault: false
-    vcdStorageProfileName: "vSAN Default Storage Policy"
-    fileSystem: "ext4"
+  reclaimPolicy: "Delete"
+  fileSystem: "ext4"
+  # storageProfileName: "vSAN Default Storage Policy"
 
 internalFeatureStates:
   topologyPreferentialDatastores:
