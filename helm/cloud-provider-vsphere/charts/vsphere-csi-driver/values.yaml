@@ -11,8 +11,8 @@ config:
 storageClass:
   enabled: true
   reclaimPolicy: "Delete"
-  # storageProfileName: "vSAN Default Storage Policy"
   fileSystem: "ext4"
+  # storageProfileName: "vSAN Default Storage Policy"
 
 internalFeatureStates:
   topologyPreferentialDatastores:
