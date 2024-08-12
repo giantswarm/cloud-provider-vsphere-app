@@ -5,11 +5,9 @@ apiVersion: storage.k8s.io/v1
 metadata:
   labels:
     {{- include "labels.common" $ | nindent 4 }}
-  {{- if .isDefault }}
   annotations:
     storageclass.kubernetes.io/is-default-class: "true"
-  {{- end }}
-  name: csi-vsphere-sc-delete
+  name: csi-vsphere-sc-default
 provisioner: csi.vsphere.vmware.com
 reclaimPolicy: {{ .reclaimPolicy }}
 allowVolumeExpansion: true

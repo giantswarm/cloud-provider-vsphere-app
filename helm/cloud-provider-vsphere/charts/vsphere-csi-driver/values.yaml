@@ -10,7 +10,6 @@ config:
 
 storageClass:
   enabled: true
-  isDefault: true
   reclaimPolicy: "Delete"
   # storageProfileName: "vSAN Default Storage Policy"
   fileSystem: "ext4"
