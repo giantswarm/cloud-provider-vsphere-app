@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Add Renovate to track new tags.
+
 ## [1.11.0] - 2024-08-12
 
 ### Changed
