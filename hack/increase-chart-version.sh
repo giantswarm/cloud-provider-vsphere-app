@@ -2,7 +2,7 @@
 
 set -eo pipefail
 set -x
-
+env
 if [[ -z "${CIRCLECI}" ]]; then
 # Not running in CircleCI
 
