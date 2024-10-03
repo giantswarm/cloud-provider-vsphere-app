@@ -13,7 +13,7 @@
   ],
   "customManagers": [
       {
-        "customType": "regex",g
+        "customType": "regex",
         "fileMatch": ["config/.+\\.y[a]?ml$"],
         "matchStrings": [
           "renovate-kube-vip: (?<depName>.*)\n(.+)\\?= v?(?<currentValue>\\S+)\n",
