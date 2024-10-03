@@ -4,7 +4,7 @@ set -eo pipefail
 set -x
 
 if [[ -z "${GITHUB_ACTIONS}" ]]; then
-# Not running in CircleCI
+# Not running in a GH action
 
 chart_file="helm/cloud-provider-vsphere/Chart.yaml"
 
@@ -35,4 +35,6 @@ case $choice in
     ;;
 esac
 
+else
+echo "Running in GH Action - skipping interactive task"
 fi
