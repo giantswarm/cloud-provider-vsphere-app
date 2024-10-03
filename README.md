@@ -50,15 +50,17 @@ Source: https://github.com/kube-vip/helm-charts/tree/kube-vip-cloud-provider-0.2
 Note that the upstream `kube-vip-cloud-provider` Helm chart isn't well maintained so we use the latest chart but also the latest kube-vip-cloud-provider tags.
 In `Chart.yaml`, `version` corresponds to the chart's release and `appVersion` is used as kube-vip-cloud-provider image tag.
 
-## How to update the charts with Renovate
+## Information on Renovate in this repo
 
 Renovate updates `version` and `appVersion` fields in `Chart.yaml` files located in `./config/xxx/overrides`. This is the file that is then used to template the actual sub-charts.
 
 > [!CAUTION]
 > Only release this app if you are sure that both `vSphere Cloud Provider` and `vSphere CSI driver` support the same Kubernetes version.
 
-### Update the charts
+### Process of updating the charts
 
-- Let Renovate open PRs.
-- Run `make all`.
+- Renovate opens a PR (let's say on branch `renovate/kube-vip-helm-charts-0.x`).
+- Pull the branch on your local: `git pull && git checkout renovate/kube-vip-helm-charts-0.x`
+- Run the scripts to update the charts: `make all`
+- If everythig is ok, push the changes back to the branch and test the PR.
 - Check the diffs.
