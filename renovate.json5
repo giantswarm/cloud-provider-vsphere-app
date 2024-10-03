@@ -7,10 +7,14 @@
     "Please do not merge directly",
     "Follow update procedure in the [README](https://github.com/giantswarm/cloud-provider-vsphere-app?tab=readme-ov-file#how-to-update-the-charts-automatically)."
   ],
+  "ignorePaths": [
+    "helm",
+    "hack"
+  ],
   "customManagers": [
       {
-        "customType": "regex",
-        "fileMatch": ["kube-vip/.+\\.y[a]?ml$"],
+        "customType": "regex",g
+        "fileMatch": ["config/.+\\.y[a]?ml$"],
         "matchStrings": [
           "renovate-kube-vip: (?<depName>.*)\n(.+)\\?= v?(?<currentValue>\\S+)\n",
           "renovate-kube-vip: (?<depName>.*)\n(\\s)*version:(\\s)*v?(?<currentValue>.*?)(\\s)*\n"
@@ -20,7 +24,7 @@
       },
       {
         "customType": "regex",
-        "fileMatch": ["kube-vip/.+\\.y[a]?ml$"],
+        "fileMatch": ["config/.+\\.y[a]?ml$"],
         "matchStrings": [
           "renovate-kube-vip-cloud-provider: (?<depName>.*)\n(.+)\\?= v?(?<currentValue>\\S+)\n",
           "renovate-kube-vip-cloud-provider: (?<depName>.*)\n(\\s)*version:(\\s)*v?(?<currentValue>.*?)(\\s)*\n"
