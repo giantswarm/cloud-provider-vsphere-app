@@ -226,7 +226,7 @@ spec:
           env:
             - name: ADDRESS
               value: /csi/csi.sock
-          image: gsoci.azurecr.io/giantswarm/csi-snapshotter:v7.0.2
+          image: gsoci.azurecr.io/giantswarm/csi-snapshotter:v8.1.0
           name: csi-snapshotter
           volumeMounts:
             - mountPath: /csi
