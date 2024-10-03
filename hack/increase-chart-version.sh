@@ -2,8 +2,8 @@
 
 set -eo pipefail
 set -x
-env
-if [[ -z "${CIRCLECI}" ]]; then
+
+if [[ -z "${GITHUB_ACTIONS}" ]]; then
 # Not running in CircleCI
 
 chart_file="helm/cloud-provider-vsphere/Chart.yaml"
