@@ -14,7 +14,10 @@
   "customManagers": [
       {
         "customType": "regex",
-        "fileMatch": ["config/.+\\.y[a]?ml$"],
+        "fileMatch": [
+          "config/.+\\.y[a]?ml$",
+          "helm/cloud-provider-vsphere/Chart.yaml"
+        ],
         "matchStrings": [
           "renovate-kube-vip: (?<depName>.*)\n(.+)\\?= v?(?<currentValue>\\S+)\n",
           "renovate-kube-vip: (?<depName>.*)\n(\\s)*version:(\\s)*v?(?<currentValue>.*?)(\\s)*\n"
@@ -24,7 +27,10 @@
       },
       {
         "customType": "regex",
-        "fileMatch": ["config/.+\\.y[a]?ml$"],
+        "fileMatch": [
+          "config/.+\\.y[a]?ml$",
+          "helm/cloud-provider-vsphere/Chart.yaml"
+        ],
         "matchStrings": [
           "renovate-kube-vip-cloud-provider: (?<depName>.*)\n(.+)\\?= v?(?<currentValue>\\S+)\n",
           "renovate-kube-vip-cloud-provider: (?<depName>.*)\n(\\s)*version:(\\s)*v?(?<currentValue>.*?)(\\s)*\n"
