@@ -6,5 +6,27 @@
   "prBodyNotes": [
     "Please do not merge directly",
     "Follow update procedure in the [README](https://github.com/giantswarm/cloud-provider-vsphere-app?tab=readme-ov-file#how-to-update-the-charts-automatically)."
+  ],
+  "customManagers": [
+      {
+        "customType": "regex",
+        "fileMatch": ["kube-vip/.+\\.y[a]?ml$"],
+        "matchStrings": [
+          "renovate-kube-vip: (?<depName>.*)\n(.+)\\?= v?(?<currentValue>\\S+)\n",
+          "renovate-kube-vip: (?<depName>.*)\n(\\s)*version:(\\s)*v?(?<currentValue>.*?)(\\s)*\n"
+        ],
+        "datasourceTemplate": "github-releases",
+        "extractVersionTemplate": "^\"?kube-vip-?(?<version>.*)\"?$"
+      },
+      {
+        "customType": "regex",
+        "fileMatch": ["kube-vip/.+\\.y[a]?ml$"],
+        "matchStrings": [
+          "renovate-kube-vip-cloud-provider: (?<depName>.*)\n(.+)\\?= v?(?<currentValue>\\S+)\n",
+          "renovate-kube-vip-cloud-provider: (?<depName>.*)\n(\\s)*version:(\\s)*v?(?<currentValue>.*?)(\\s)*\n"
+        ],
+        "datasourceTemplate": "github-releases",
+        "extractVersionTemplate": "^\"?kube-vip-cloud-provider-?(?<version>.*)\"?$"
+      }
   ]
 }

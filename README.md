@@ -44,85 +44,43 @@ CSI doesn't have a helm chart so we created the chart based on the manifest file
 
 It is planned to automate chart creation with `kustomize` to be able to update easily and to be able to track our custom changes properly.
 
-## How to update the charts automatically
+## Information on our charts
 
-### kube-vip
+### vSphere Cloud Provider
 
-- In the `kube-vip/helm-charts` upstream repo, browse to [charts/kube-vip/Chart.yaml](https://github.com/kube-vip/helm-charts/blob/main/charts/kube-vip/Chart.yaml) (`kube-vip` folder, **not** `kube-vip-cloud-provider`) and switch branch to the latest `kube-vip-x.y.z` tag (e.g. `kube-vip-0.6.1`).
-- Edit [update-kubevip-chart.sh](hack/update-kubevip-chart.sh) here and change the branch value under `./hack/clone-git-repo.sh` to reflect the branch version. For instance:
+Nothing exotic about this, we just grab the upstream chart.
 
-``` sh
-"./hack/clone-git-repo.sh" \
-    "kube-vip/helm-charts" \
-    "kube-vip-0.6.1" \
-    "kube-vip"
-```
-
-- Change `version` and `appVersion` fields in our [Chart.yaml overwrite](config/kube-vip/overwrites/Chart.yaml) to match the ones in upstream `Chart.yaml` (check you're on the right branch).
-- In `Chart.yaml`, `appVersion` is used as kube-vip image tag. If you require a different tag than what is set upstream, change it to the tag you need from the [upstream kube-vip tags](https://github.com/kube-vip/kube-vip/tags) in the [Chart.yaml overwrite](config/kube-vip/overwrites/Chart.yaml).
-
-### kube-vip-cloud-provider
-
-- In the `kube-vip/helm-charts` upstream repo, browse to [charts/kube-vip-cloud-provider/Chart.yaml](https://github.com/kube-vip/helm-charts/blob/main/charts/kube-vip-cloud-provider/Chart.yaml) (`kube-vip-cloud-provider` folder, **not** `kube-vip`) and switch branch to the latest `kube-vip-cloud-provider-x.y.z` tag (e.g. `kube-vip-cloud-provider-0.2.2`).
-- Edit [update-kubevip-cloud-provider-chart.sh](hack/update-kubevip-cloud-provider-chart.sh) here and change the branch value under `./hack/clone-git-repo.sh` to reflect the branch version. For instance:
-
-``` sh
-"./hack/clone-git-repo.sh" \
-    "kube-vip/helm-charts" \
-    "kube-vip-cloud-provider-0.2.2" \
-    "kube-vip-cloud-provider"
-```
-
-- Change `version` and `appVersion` fields in our [Chart.yaml overwrite](config/kube-vip/overwrites/Chart.yaml) to match the ones in upstream `Chart.yaml` (check you're on the right branch).
-- In `Chart.yaml`, `appVersion` is used as kube-vip image tag. If you require a different tag than what is set upstream, change it to the tag you need from the [upstream kube-vip-cloud-provider tag](https://github.com/kube-vip/kube-vip-cloud-provider/tags) in the [Chart.yaml overwrite](config/kube-vip-cloud-provider/overwrites/Chart.yaml).
+> [!NOTE]
+> The vSphere Cloud Provider versions are aligned with Kubernetes versions for support (e.g. CPI v1.27.0 for Kubernetes v1.27) so make sure the CSI is also aligned when merging.
 
 ### vSphere CSI driver
 
 > [!NOTE]
 > There is no upstream Helm chart for the CSI, we generate it from the manifests and we apply customizations. There are a few overwrites and patches in the `/config/vsphere-csi-driver` folder.
+> Find the latest CSI version that is compatible with the Kubernetes version of the cluster it will run in. You will find this in the [Release Notes](https://docs.vmware.com/en/VMware-vSphere-Container-Storage-Plug-in/3.0/rn/vmware-vsphere-container-storage-plugin-30-release-notes/index.html). For instance, vSphere CSI `v3.2.0` is compatible with Kubernetes `1.27` to `1.29`. (You can check the tag exists in the [upstream repo](https://github.com/kubernetes-sigs/vsphere-csi-driver/tags)). Make sure the CPI is also aligned when merging.
 
-- First off, find the latest CSI version that is compatible with the Kubernetes version of the cluster it will run in. You will find this in the [Release Notes](https://docs.vmware.com/en/VMware-vSphere-Container-Storage-Plug-in/3.0/rn/vmware-vsphere-container-storage-plugin-30-release-notes/index.html). For instance, vSphere CSI `v3.2.0` is compatible with Kubernetes `1.27` to `1.29`. (You can check the tag exists in the [upstream repo](https://github.com/kubernetes-sigs/vsphere-csi-driver/tags))
-- Edit [update-csi-chart.sh](hack/update-csi-chart.sh) here and change the branch value under `./hack/clone-git-repo.sh` to reflect the branch version. For instance:
-
-``` sh
-"./hack/clone-git-repo.sh" \
-  "kubernetes-sigs/vsphere-csi-driver" \
-  "v3.2.0" \
-  "vsphere-csi-driver"
-```
-
-- Then Adjust `version` and `appVersion` in the [Chart.yaml overwrite](config/vsphere-csi-driver/overwrites/Chart.yaml). For instance:
-
-``` yaml
-appVersion: 3.2.0
-version: 3.2.0
-```
-
-### vSphere Cloud Provider
+### kube-vip
 
 > [!NOTE]
-> The vSphere Cloud Provider versions are aligned with Kubernetes versions for support (e.g. CPI v1.27.0 for Kubernetes v1.27).
+> New versions of the `kube-vip` Helm chart are released with `kube-vip-x.y.z` in the `kube-vip/helm-charts` repo (same repo as `kube-vip-cloud-provider`).
 
-- In the [upstream repo](https://github.com/kubernetes/cloud-provider-vsphere/tree/release-1.27), look for the branch of the version to update to (`release-x.yy`).
-- Edit [update-cpi-chart.sh](hack/update-cpi-chart.sh) here and change the branch value under `./hack/clone-git-repo.sh` to reflect the branch version. For instance:
+Note that the upstream `kube-vip` Helm chart isn't well maintained so we use the latest chart but also the latest kube-vip tags.
+In `Chart.yaml`, `version` corresponds to the chart's release and `appVersion` is used as kube-vip image tag.
 
-``` sh
-"./hack/clone-git-repo.sh" \
-    "/kubernetes/cloud-provider-vsphere" \
-    "release-1.27" \
-    "cloud-provider-vsphere"
-```
+### kube-vip-cloud-provider
 
-- Then Adjust `version` and `appVersion` in the [Chart.yaml overwrite](config/cloud-provider-for-vsphere/overwrites/Chart.yaml). For instance:
+> [!NOTE]
+> New versions of the `kube-vip-cloud-provider` Helm chart are released with `kube-vip-cloud-provider-x.y.z` in the `kube-vip/helm-charts` repo (same repo as `kube-vip`).
 
-``` yaml
-appVersion: 1.27.0
-version: 1.27.0
-```
+Note that the upstream `kube-vip-cloud-provider` Helm chart isn't well maintained so we use the latest chart but also the latest kube-vip-cloud-provider tags.
+In `Chart.yaml`, `version` corresponds to the chart's release and `appVersion` is used as kube-vip-cloud-provider image tag.
 
-### Update parent chart's dependencies
+## How to update the charts with Renovate
 
-- Update each chart's version to use in the parent `Chart.yaml` in [templates/Chart.yaml](templates/Chart.yaml).
+Renovate updates `version` and `appVersion` fields in `Chart.yaml` files located in `./config/xxx/overrides`. This is the file that is then used to template the actual sub-charts.
+
+> [!CAUTION]
+> Only release this app if you are sure that both `vSphere Cloud Provider` and `vSphere CSI driver` support the same Kubernetes version.
 
 ### Update the charts
 

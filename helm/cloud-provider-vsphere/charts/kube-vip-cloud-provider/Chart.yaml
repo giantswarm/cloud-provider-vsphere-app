@@ -12,15 +12,17 @@ description: A Helm chart for kube-vip cloud provider
 # pipeline. Library charts do not define any templates and therefore cannot be deployed.
 type: application
 
-# This is the chart version. This version number should be incremented each time you make changes
-# to the chart and its templates, including the app version.
-# Versions are expected to follow Semantic Versioning (https://semver.org/)
+#* This is the upstream chart version which is released as a specific tag in the same repo as `kube-vip`.
+#* Renovate below watches releases that match `kube-vip-cloud-provider-x.y.z`.
+
+# renovate-kube-vip-cloud-provider: kube-vip/helm-charts
 version: 0.2.2
 
-# This is the version number of the application being deployed. This version number should be
-# incremented each time you make changes to the application. Versions are not expected to
-# follow Semantic Versioning. They should reflect the version the application is using.
-# *** GIANT SWARM : Bump version to fix CVE. ***
+#* This is the app's version of the application being deployed.
+#* It overwrites the value of the upstream chart above which isn't well maintained.
+#* Renovate watches for standard versioning as the releases are normal in this repo.
+
+# repo: kube-vip/kube-vip-cloud-provider
 appVersion: v0.0.5
 
 icon: https://github.com/kube-vip/kube-vip/raw/main/kube-vip.png
