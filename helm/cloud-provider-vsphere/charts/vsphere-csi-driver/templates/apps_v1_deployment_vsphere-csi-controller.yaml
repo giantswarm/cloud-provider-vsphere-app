@@ -57,7 +57,7 @@ spec:
           env:
             - name: ADDRESS
               value: /csi/csi.sock
-          image: gsoci.azurecr.io/giantswarm/csi-attacher:v4.5.1
+          image: gsoci.azurecr.io/giantswarm/csi-attacher:v4.7.0
           name: csi-attacher
           volumeMounts:
             - mountPath: /csi
