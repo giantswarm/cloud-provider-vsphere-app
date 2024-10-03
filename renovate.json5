@@ -4,7 +4,7 @@
     "github>giantswarm/renovate-presets:default.json5",
   ],
   "prBodyNotes": [
-    "Please do not merge directly",
+    ":warning: Please do not merge directly :warning:",
     "Follow update procedure in the [README](https://github.com/giantswarm/cloud-provider-vsphere-app?tab=readme-ov-file#how-to-update-the-charts-automatically)."
   ],
   "ignorePaths": [
