@@ -59,5 +59,6 @@ Renovate updates `version` and `appVersion` fields in `Chart.yaml` files located
 
 ### Update the charts
 
+- Let Renovate open PRs.
 - Run `make all`.
 - Check the diffs.
