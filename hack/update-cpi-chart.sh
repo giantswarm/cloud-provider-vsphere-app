@@ -9,13 +9,12 @@ chart_dir="./helm/cloud-provider-vsphere/charts/cloud-provider-for-vsphere"
 cd "$base_dir"
 
 # The goal here is to control versions only from Chart.yaml overrides with Renovate and grab that version here.
-VERSION=$(cat config/cloud-provider-for-vsphere/overwrites/Chart.yaml | grep "^version:")
-VERSION=$(echo "${VERSION#*:}" | xargs)
+VERSION=$(yq e '.version' "config/cloud-provider-for-vsphere/overwrites/Chart.yaml")
 
 "./hack/clone-git-repo.sh" \
-    "/kubernetes/cloud-provider-vsphere" \
-    "v$VERSION" \
-    "cloud-provider-vsphere"
+  "/kubernetes/cloud-provider-vsphere" \
+  "v$VERSION" \
+  "cloud-provider-vsphere"
 
 rm -Rf "$chart_dir"
 mkdir "$chart_dir"

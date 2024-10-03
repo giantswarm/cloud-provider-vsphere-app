@@ -1,10 +1,14 @@
 #!/bin/bash
 
-set -euo pipefail
+set -eo pipefail
+set -x
+
+if [[ -z "${CIRCLECI}" ]]; then
+# Not running in CircleCI
 
 chart_file="helm/cloud-provider-vsphere/Chart.yaml"
-current_version=$(cat $chart_file | grep "^version:")
-current_version=$(echo "${current_version#*:}" | xargs)
+
+current_version=$(yq e '.version' $chart_file)
 
 update_version() {
     new_version=$1
@@ -30,3 +34,5 @@ case $choice in
     echo "Invalid choice. Please enter n, m, or p."
     ;;
 esac
+
+fi
