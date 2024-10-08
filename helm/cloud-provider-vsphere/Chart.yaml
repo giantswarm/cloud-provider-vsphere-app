@@ -22,7 +22,7 @@ dependencies:
     version: 3.3.0
   - name: kube-vip
     # renovate-kube-vip: kube-vip/helm-charts
-    version: 0.6.1
+    version: 0.6.2
     condition: kube-vip.enabled
   - name: kube-vip-cloud-provider
     # renovate-kube-vip-cloud-provider: kube-vip/helm-charts
