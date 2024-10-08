@@ -7,10 +7,14 @@
     ":warning: Please do not merge directly :warning:",
     "Follow update procedure in the [README](https://github.com/giantswarm/cloud-provider-vsphere-app?tab=readme-ov-file#how-to-update-the-charts-automatically)."
   ],
-  "ignorePaths": [
-    "helm",
-    "hack"
-  ],
+  "kubernetes": {
+    "ignorePaths": [
+      // We don't want to watch the K8s manifests directly.
+      "helm",
+      "config",
+      "hack"
+    ]
+  },
   "customManagers": [
       {
         "customType": "regex",
