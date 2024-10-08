@@ -4,7 +4,39 @@
     "github>giantswarm/renovate-presets:default.json5",
   ],
   "prBodyNotes": [
-    "Please do not merge directly",
+    ":warning: Please do not merge directly :warning:",
     "Follow update procedure in the [README](https://github.com/giantswarm/cloud-provider-vsphere-app?tab=readme-ov-file#how-to-update-the-charts-automatically)."
+  ],
+  "ignorePaths": [
+    "helm",
+    "hack"
+  ],
+  "customManagers": [
+      {
+        "customType": "regex",
+        "fileMatch": [
+          "config/.+\\.y[a]?ml$",
+          "helm/cloud-provider-vsphere/Chart.yaml"
+        ],
+        "matchStrings": [
+          "renovate-kube-vip: (?<depName>.*)\n(.+)\\?= v?(?<currentValue>\\S+)\n",
+          "renovate-kube-vip: (?<depName>.*)\n(\\s)*version:(\\s)*v?(?<currentValue>.*?)(\\s)*\n"
+        ],
+        "datasourceTemplate": "github-releases",
+        "extractVersionTemplate": "^\"?kube-vip-?(?<version>.*)\"?$"
+      },
+      {
+        "customType": "regex",
+        "fileMatch": [
+          "config/.+\\.y[a]?ml$",
+          "helm/cloud-provider-vsphere/Chart.yaml"
+        ],
+        "matchStrings": [
+          "renovate-kube-vip-cloud-provider: (?<depName>.*)\n(.+)\\?= v?(?<currentValue>\\S+)\n",
+          "renovate-kube-vip-cloud-provider: (?<depName>.*)\n(\\s)*version:(\\s)*v?(?<currentValue>.*?)(\\s)*\n"
+        ],
+        "datasourceTemplate": "github-releases",
+        "extractVersionTemplate": "^\"?kube-vip-cloud-provider-?(?<version>.*)\"?$"
+      }
   ]
 }

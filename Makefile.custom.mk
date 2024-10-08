@@ -8,7 +8,7 @@ YQ = ./bin/yq
 YQ_VERSION := 4.31.2
 
 .PHONY: all
-all: update-cpi-chart update-csi-chart apply-custom-patches-for-csi update-kubevip-chart update-kubevip-cloud-provider-chart
+all: update-cpi-chart update-csi-chart apply-custom-patches-for-csi update-kubevip-chart update-kubevip-cloud-provider-chart increase-chart-version
 	@$(call say,Sync has been done ✓)
 
 .PHONY: update-cpi-chart
@@ -39,6 +39,11 @@ update-kubevip-cloud-provider-chart:
 	@$(call say,Kubevip cloud provider helm chart)
 	./hack/update-kubevip-cloud-provider-chart.sh
 	./hack/common-labels-injector.sh kube-vip-cloud-provider
+
+.PHONY: increase-chart-version
+increase-chart-version:
+	@$(call say,Increase parent chart SemVer version)
+	./hack/increase-chart-version.sh
 
 $(KUSTOMIZE): ## Download kustomize locally if necessary.
 	@$(call say,Download Kustomize)

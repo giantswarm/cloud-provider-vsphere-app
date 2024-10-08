@@ -8,9 +8,12 @@ KUSTOMIZE="${1:-kustomize}"
 
 cd "$base_dir"
 
+# The goal here is to control versions only from Chart.yaml overrides with Renovate and grab that version here.
+VERSION=$(yq e '.version' "config/vsphere-csi-driver/overwrites/Chart.yaml")
+
 "./hack/clone-git-repo.sh" \
   "kubernetes-sigs/vsphere-csi-driver" \
-  "v3.3.0" \
+  "v$VERSION" \
   "vsphere-csi-driver"
 
 rm -Rf "$chart_dir"

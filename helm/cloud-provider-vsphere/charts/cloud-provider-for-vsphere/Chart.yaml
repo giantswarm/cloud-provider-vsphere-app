@@ -1,7 +1,9 @@
 apiVersion: v2
+# repo: kubernetes/cloud-provider-vsphere
 appVersion: 1.30.1
 description: A Helm chart for vSphere Cloud Provider Interface Manager (CPI)
 name: cloud-provider-for-vsphere
+# repo: kubernetes/cloud-provider-vsphere
 version: 1.30.1
 keywords:
   - vsphere
