@@ -10,7 +10,7 @@
   "ignorePaths": [
     // These files get updated via scripts, not Renovate.
     // Excluded here otherwise the `repo` customManager updates them.
-    "helm/cloud-provider-vsphere/charts
+    "helm/cloud-provider-vsphere/charts",
   ],
   "kubernetes": {
     "ignorePaths": [
