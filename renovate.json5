@@ -7,6 +7,11 @@
     ":warning: Please do not merge directly :warning:",
     "Follow update procedure in the [README](https://github.com/giantswarm/cloud-provider-vsphere-app?tab=readme-ov-file#how-to-update-the-charts-automatically)."
   ],
+  "ignorePaths": [
+    // These files get updated via scripts, not Renovate.
+    // Excluded here otherwise the `repo` customManager updates them.
+    "helm/cloud-provider-vsphere/charts
+  ],
   "kubernetes": {
     "ignorePaths": [
       // We don't want to watch the K8s manifests directly.
