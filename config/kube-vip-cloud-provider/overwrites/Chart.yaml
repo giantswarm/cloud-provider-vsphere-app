@@ -21,7 +21,7 @@ version: 0.2.2
 #* It overwrites the value of the upstream chart above which isn't well maintained.
 #* Renovate watches for standard versioning as the releases are normal in this repo.
 # repo: kube-vip/kube-vip-cloud-provider
-appVersion: v0.0.5
+appVersion: v0.0.10
 
 icon: https://github.com/kube-vip/kube-vip/raw/main/kube-vip.png
 
