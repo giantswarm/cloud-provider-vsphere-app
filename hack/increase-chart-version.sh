@@ -35,6 +35,8 @@ case $choice in
     ;;
 esac
 
+echo "\n*********************************\n🔔 Please update the CHANGELOG 🔔\n*********************************"
+
 else
 echo "Running in GH Action - skipping interactive task"
 fi
