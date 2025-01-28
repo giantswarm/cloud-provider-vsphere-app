@@ -54,6 +54,7 @@ $(KUSTOMIZE): ## Download kustomize locally if necessary.
 
 $(YQ): ## Download yq locally if necessary.
 	@$(call say,Download yq)
+	mkdir ./bin || true
 	curl -sfL https://github.com/mikefarah/yq/releases/download/v$(YQ_VERSION)/yq_$(OS)_$(ARCH) > $@
 	chmod +x $@
 	@echo "yq downloaded"
