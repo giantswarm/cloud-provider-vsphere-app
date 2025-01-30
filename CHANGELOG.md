@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add Renovate to track new tags.
 - Update `kube-vip` helm chart to `0.6.2`.
 - Update `kube-vip` to `0.8.4`.
+- Add initContainer to CSI node registrar container to wait for CRD to be registered.
 
 ## [1.11.0] - 2024-08-12
 

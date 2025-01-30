@@ -55,3 +55,8 @@ vsphere-csi-driver:
     runAsNonRoot: false
     seccompProfile:
       type: RuntimeDefault
+
+  initContainer:
+    image:
+      name: giantswarm/kubectl
+      tag: 1.29.9

@@ -108,6 +108,43 @@ spec:
           name: plugin-dir
       dnsPolicy: ClusterFirstWithHostNet
       hostNetwork: true
+      initContainers:
+      - command:
+        - /bin/bash
+        - -c
+        - |
+          echo "Waiting for CRD csinodetopologies.cns.vmware.com to be registered..."
+          attempt=0
+          max_attempts=30
+          while ! kubectl get crd csinodetopologies.cns.vmware.com >/dev/null 2>&1; do
+            attempt=$((attempt+1))
+            if [ "$attempt" -ge "$max_attempts" ]; then
+              echo "CRD not found after $max_attempts attempts, exiting."
+              exit 1
+            fi
+            echo "Attempt $attempt/$max_attempts: CRD not found, retrying in 10s..."
+            sleep 10
+          done
+          echo "CRD csinodetopologies.cns.vmware.com found."
+        image: gsoci.azurecr.io/{{ .Values.initContainer.image.name }}:{{ .Values.initContainer.image.tag
+          }}
+        name: wait-for-crd
+        resources:
+          limits:
+            cpu: 100m
+            memory: 256Mi
+          requests:
+            cpu: 10m
+            memory: 64Mi
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          readOnlyRootFilesystem: true
+          runAsNonRoot: true
+          seccompProfile:
+            type: RuntimeDefault
       nodeSelector:
         kubernetes.io/os: linux
       priorityClassName: system-node-critical
