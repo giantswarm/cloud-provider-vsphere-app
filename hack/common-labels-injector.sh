@@ -9,7 +9,7 @@ TEMPLATE_FOLDER="$base_dir/helm/cloud-provider-vsphere/charts/$CHART_NAME/templa
 
 for file in "$TEMPLATE_FOLDER"/*yaml
 do
-  echo "Droping unnecessary labels"
+  echo "Dropping unnecessary labels"
   sed -i "/kube-vip-cloud-provider.labels/d" "$file"
   sed -i "/kube-vip.labels/d" "$file"
 
@@ -22,7 +22,7 @@ do
   # inject common labels to resources that have already labels section 
   injected='{{- include "labels.common" $ | nindent 4 }}'
   sed -i -z "s/\n\s\slabels:/\n  labels:\n    $injected/g" "$file"
-  
+ 
   # inject common labels to list resources that have already labels section 
   if grep -q "kind: List" < "$file"; then
     injected='{{- include "labels.common" $ | nindent 6 }}'
