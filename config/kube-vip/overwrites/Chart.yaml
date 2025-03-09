@@ -21,7 +21,7 @@ version: 0.6.2
 #* It overwrites the value of the upstream chart above which isn't well maintained.
 #* Renovate watches for standard versioning as the releases are normal in this repo.
 # repo: kube-vip/kube-vip
-appVersion: v0.8.4
+appVersion: v0.8.9
 
 icon: https://github.com/kube-vip/kube-vip/raw/main/kube-vip.png
 
