@@ -15,7 +15,7 @@ type: application
 #* This is the upstream chart version which is released as a specific tag in the same repo as `kube-vip-cloud-provider`.
 #* Renovate below watches releases that match `kube-vip-x.y.z`.
 # renovate-kube-vip: kube-vip/helm-charts
-version: 0.6.2
+version: 0.8.4
 
 #* This is the app's version of the application being deployed.
 #* It overwrites the value of the upstream chart above which isn't well maintained.
