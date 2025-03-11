@@ -1,11 +1,10 @@
 #!/bin/bash
 
-set -euo pipefail 
+set -euo pipefail
 
 base_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
 
-CHART_NAME="${1}"
-TEMPLATE_FOLDER="$base_dir/helm/cloud-provider-vsphere/charts/$CHART_NAME/templates"
+TEMPLATE_FOLDER="$base_dir/helm/cloud-provider-vsphere/templates"
 
 for file in "$TEMPLATE_FOLDER"/*yaml
 do
@@ -19,11 +18,11 @@ do
         continue
   fi
 
-  # inject common labels to resources that have already labels section 
+  # inject common labels to resources that have already labels section
   injected='{{- include "labels.common" $ | nindent 4 }}'
   sed -i -z "s/\n\s\slabels:/\n  labels:\n    $injected/g" "$file"
- 
-  # inject common labels to list resources that have already labels section 
+
+  # inject common labels to list resources that have already labels section
   if grep -q "kind: List" < "$file"; then
     injected='{{- include "labels.common" $ | nindent 6 }}'
     sed -i -z "s/\n\s\s\s\slabels:/\n    labels:\n      $injected/g" "$file"
