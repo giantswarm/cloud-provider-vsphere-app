@@ -1,10 +1,11 @@
 #!/bin/bash
 
 set -euo pipefail
-set -x 
+set -x
 
 base_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)
-chart_dir="./helm/cloud-provider-vsphere/charts/cloud-provider-for-vsphere"
+chart_dir="./helm/cloud-provider-vsphere"
+YQ="./bin/yq"
 
 cd "$base_dir"
 
@@ -24,7 +25,9 @@ cp -R \
   "$chart_dir"
 
 # Customizations
-
 cp -R \
   "./config/cloud-provider-for-vsphere/overwrites/." \
   "$chart_dir/"
+
+# replace the controller image
+${YQ} eval --inplace 'with(select(.daemonset.image != null); .daemonset.image = "gsoci.azurecr.io/giantswarm/cloud-provider-vsphere")' "$chart_dir/values.yaml"

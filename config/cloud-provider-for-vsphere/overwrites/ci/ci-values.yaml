@@ -1,0 +1,11 @@
+global:
+  config:
+    enabled: true
+    clusterId: k8s-cluster
+    vcenter: "vcenter.local"
+    username: "user"
+    password: "pass"
+    datacenter: "dc"
+    region: "k8s-region"
+    zone: "k8s-zone"
+    thumbprint: "F7:CF:F9:E5:99:39:FF:C1:D7:14:F1:3F:8A:42:21:95:3B:A1:6E:16"
