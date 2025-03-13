@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0] - 2025-03-13
+
 ### Changed
 
 - Remove subcharts in order to deploy only the vSphere CPI (at upstream version `v1.30.0`).
@@ -125,7 +127,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Add upstream CPI chart at 1.22.6
 
-[Unreleased]: https://github.com/giantswarm/cloud-provider-vsphere-app/compare/v1.12.0...HEAD
+[Unreleased]: https://github.com/giantswarm/cloud-provider-vsphere-app/compare/v2.0.0...HEAD
+[2.0.0]: https://github.com/giantswarm/cloud-provider-vsphere-app/compare/v1.12.0...v2.0.0
 [1.12.0]: https://github.com/giantswarm/cloud-provider-vsphere-app/compare/v1.11.0...v1.12.0
 [1.11.0]: https://github.com/giantswarm/cloud-provider-vsphere-app/compare/v1.10.0...v1.11.0
 [1.10.0]: https://github.com/giantswarm/cloud-provider-vsphere-app/compare/v1.9.0...v1.10.0
