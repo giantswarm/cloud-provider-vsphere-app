@@ -31,3 +31,5 @@ cp -R \
 
 # replace the controller image
 ${YQ} eval --inplace 'with(select(.daemonset.image != null); .daemonset.image = "gsoci.azurecr.io/giantswarm/cloud-provider-vsphere")' "$chart_dir/values.yaml"
+# rename the chart to ensure it stays consistent
+${YQ} eval --inplace 'with(select(.name != null); .name = "cloud-provider-vsphere")' "$chart_dir/Chart.yaml"
