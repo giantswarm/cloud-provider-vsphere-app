@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.1] - 2025-03-14
+
 ### Changed
 
 - Ensure the Helm chart name stays consistent.
@@ -131,7 +133,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Add upstream CPI chart at 1.22.6
 
-[Unreleased]: https://github.com/giantswarm/cloud-provider-vsphere-app/compare/v2.0.0...HEAD
+[Unreleased]: https://github.com/giantswarm/cloud-provider-vsphere-app/compare/v2.0.1...HEAD
+[2.0.1]: https://github.com/giantswarm/cloud-provider-vsphere-app/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/giantswarm/cloud-provider-vsphere-app/compare/v1.12.0...v2.0.0
 [1.12.0]: https://github.com/giantswarm/cloud-provider-vsphere-app/compare/v1.11.0...v1.12.0
 [1.11.0]: https://github.com/giantswarm/cloud-provider-vsphere-app/compare/v1.10.0...v1.11.0
