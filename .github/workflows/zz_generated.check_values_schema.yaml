@@ -19,4 +19,4 @@ on:
 
 jobs:
   check:
-    uses: giantswarm/github-workflows/.github/workflows/chart-values.yaml@f1520efee9dd9bd28f8ba4c09a63b4d082bd52fc
+    uses: giantswarm/github-workflows/.github/workflows/chart-values.yaml@3f8721b57a33b60d947d183e9bd857c170933aea
