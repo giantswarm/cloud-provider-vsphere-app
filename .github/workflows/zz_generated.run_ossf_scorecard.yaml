@@ -26,6 +26,6 @@ on:
 
 jobs:
   analysis:
-    uses: giantswarm/github-workflows/.github/workflows/ossf-scorecard.yaml@e5c97e8f373d5dad2d7ee426a901548beb95623d
+    uses: giantswarm/github-workflows/.github/workflows/ossf-scorecard.yaml@ff2d1dd08bfeb2af1d3556dda0dcb0ad91f987ed
     secrets:
       scorecard_token: ${{ secrets.SCORECARD_TOKEN }}
