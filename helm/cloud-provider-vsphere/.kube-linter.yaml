@@ -1,3 +1,6 @@
 checks:
-  # will be enabled later
-  doNotAutoAddDefaults: true
+  exclude:
+    - "unset-cpu-requirements"
+    - "unset-memory-requirements"
+    - "host-network"
+    - "no-read-only-root-fs"

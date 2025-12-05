@@ -12,6 +12,7 @@ config:
   region: "k8s-region"
   zone: "k8s-zone"
   thumbprint: ""
+  caFile: "" # Path to the ca-file if it has been mounted into the pod.
   secret:
     # Specifies whether Secret should be created from config values
     create: true
@@ -49,7 +50,7 @@ serviceAccount:
 daemonset:
   annotations: {}
   image: gsoci.azurecr.io/giantswarm/cloud-provider-vsphere
-  tag: v1.30.0
+  tag: v1.34.0
   pullPolicy: IfNotPresent
   dnsPolicy: ClusterFirst
   cmdline:
@@ -71,5 +72,28 @@ daemonset:
   ## Additional pod labels
   ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
   podLabels: {}
-  ## Allows for the default tolerations to be replaced with user-defined ones
-  tolerations: []
+  ## Allows for the default tolerations to be updated or replaced with user-defined ones
+  tolerations:
+    - key: node.cloudprovider.kubernetes.io/uninitialized
+      value: "true"
+      effect: NoSchedule
+    - key: node-role.kubernetes.io/control-plane
+      effect: NoSchedule
+      operator: Exists
+    - key: node.kubernetes.io/not-ready
+      effect: NoSchedule
+      operator: Exists
+    - key: CriticalAddonsOnly
+      effect: NoExecute
+      operator: Exists
+  ## Allows for the default affinities to be updated or replaced with user-defined ones
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: node-role.kubernetes.io/control-plane
+                operator: Exists
+  extraVolumes: []
+  extraVolumesMounts: []
+  hostAliases: []
