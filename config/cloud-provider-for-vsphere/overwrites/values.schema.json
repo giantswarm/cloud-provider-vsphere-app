@@ -3,6 +3,20 @@
     "type": "object",
     "additionalProperties": false,
     "properties": {
+        "kamaj": {
+            "type": "object",
+            "title": "kamaj",
+            "description": "Kamaj configuration",
+            "additionalProperties": false,
+            "properties": {
+                "enabled": {
+                    "type": "boolean",
+                    "title": "enabled",
+                    "description": "Specifies whether to use Deployment instead of DaemonSet",
+                    "default": false
+                }
+            }
+        },
         "config": {
             "type": "object",
             "title": "config",

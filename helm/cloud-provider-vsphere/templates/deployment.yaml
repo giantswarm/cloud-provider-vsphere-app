@@ -1,4 +1,4 @@
-{{- if not .Values.kamaj.enabled -}}
+{{- if .Values.kamaj.enabled -}}
 {{- $config := .Values.config -}}
 {{- if .Values.global -}}
 {{- if .Values.global.config -}}
@@ -6,13 +6,13 @@
 {{- end -}}
 {{- end -}}
 apiVersion: apps/v1
-kind: DaemonSet
+kind: Deployment
 metadata:
   name: {{ template "cpi.name" . }}
   labels:
     {{- include "labels.common" $ | nindent 4 }}
     app: {{ template "cpi.name" . }}
-    vsphere-cpi-infra: daemonset
+    vsphere-cpi-infra: deployment
     component: cloud-controller-manager
     tier: control-plane
   namespace: {{ .Release.Namespace }}
@@ -21,10 +21,11 @@ metadata:
     {{- toYaml .Values.daemonset.annotations | nindent 4 }}
     {{- end }}
 spec:
+  replicas: {{ .Values.daemonset.replicaCount }}
   selector:
     matchLabels:
       app: {{ template "cpi.name" . }}
-  updateStrategy:
+  strategy:
     type: RollingUpdate
   template:
     metadata:
@@ -37,7 +38,7 @@ spec:
         component: cloud-controller-manager
         tier: control-plane
         release: {{ .Release.Name }}
-        vsphere-cpi-infra: daemonset
+        vsphere-cpi-infra: deployment
         {{- if .Values.daemonset.podLabels }}
         {{- toYaml .Values.daemonset.podLabels | nindent 8 }}
         {{- end }}

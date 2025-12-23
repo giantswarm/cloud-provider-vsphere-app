@@ -33,3 +33,10 @@ cp -R \
 ${YQ} eval --inplace 'with(select(.daemonset.image != null); .daemonset.image = "gsoci.azurecr.io/giantswarm/cloud-provider-vsphere")' "$chart_dir/values.yaml"
 # rename the chart to ensure it stays consistent
 ${YQ} eval --inplace 'with(select(.name != null); .name = "cloud-provider-vsphere")' "$chart_dir/Chart.yaml"
+# add kamaj configuration
+${YQ} eval --inplace '.kamaj.enabled = false' "$chart_dir/values.yaml"
+${YQ} eval --inplace '. = {"kamaj": .kamaj} + .' "$chart_dir/values.yaml"
+
+# Add conditional rendering to daemonset - only render if kamaj is not enabled
+sed -i '1s/^/{{- if not .Values.kamaj.enabled -}}\n/' "$chart_dir/templates/daemonset.yaml"
+echo '{{- end }}' >> "$chart_dir/templates/daemonset.yaml"
