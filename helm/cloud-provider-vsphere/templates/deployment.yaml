@@ -45,11 +45,10 @@ spec:
     spec:
     {{- if .Values.daemonset.tolerations }}
       tolerations:
-        {{- toYaml .Values.daemonset.tolerations | nindent 8 }}
-    {{- end }}
-    {{- if .Values.daemonset.affinity }}
-      affinity:
-        {{- toYaml .Values.daemonset.affinity | nindent 8 }}
+      - effect: NoExecute
+        operator: Exists
+      - effect: NoSchedule
+        operator: Exists
     {{- end }}
     {{- if .Values.daemonset.hostAliases }}
       hostAliases:
