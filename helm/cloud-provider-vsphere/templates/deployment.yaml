@@ -1,4 +1,4 @@
-{{- if .Values.kamaj.enabled -}}
+{{- if .Values.kamaji.enabled -}}
 {{- $config := .Values.config -}}
 {{- if .Values.global -}}
 {{- if .Values.global.config -}}
