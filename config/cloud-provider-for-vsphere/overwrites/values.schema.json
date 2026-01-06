@@ -3,10 +3,10 @@
     "type": "object",
     "additionalProperties": false,
     "properties": {
-        "kamaj": {
+        "kamaji": {
             "type": "object",
-            "title": "kamaj",
-            "description": "Kamaj configuration",
+            "title": "kamaji",
+            "description": "kamaji configuration",
             "additionalProperties": false,
             "properties": {
                 "enabled": {
