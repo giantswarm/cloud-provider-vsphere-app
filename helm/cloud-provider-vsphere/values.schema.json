@@ -6,7 +6,7 @@
         "kamaji": {
             "type": "object",
             "title": "kamaji",
-            "description": "Kamaji configuration",
+            "description": "kamaji configuration",
             "additionalProperties": false,
             "properties": {
                 "enabled": {
