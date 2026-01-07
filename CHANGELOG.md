@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Add kamaji.enabled value. If set to true, a deployment instead of the dameonset will be used for CPI controller components.
+
 ## [2.1.0] - 2025-12-12
 
 ### Changed
