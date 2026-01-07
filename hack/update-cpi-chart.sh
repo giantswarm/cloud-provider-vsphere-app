@@ -40,3 +40,12 @@ ${YQ} eval --inplace '. = {"kamaji": .kamaji} + .' "$chart_dir/values.yaml"
 # Add conditional rendering to daemonset - only render if kamaji is not enabled
 sed -i '1s/^/{{- if not .Values.kamaji.enabled -}}\n/' "$chart_dir/templates/daemonset.yaml"
 echo '{{- end }}' >> "$chart_dir/templates/daemonset.yaml"
+
+# we need to reset the version field in Chart.yaml to match the
+# latest release of this repo. So we fetch it with jq and then
+# inject it back into the Chart.yaml to avoid the upstream change and let build suite update it.
+LATEST_VERSION=$(curl -s https://api.github.com/repos/giantswarm/cloud-provider-vsphere-app/releases/latest | jq -r .name)
+# remove leading 'v' if present
+LATEST_VERSION="${LATEST_VERSION#v}"
+# replace version in Chart.yaml
+sed -i -E "s/^version.*$/version: ${LATEST_VERSION}/" "${chart_dir}/Chart.yaml"
