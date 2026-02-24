@@ -28,7 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Update to upstream `1.34.0`.
 
-## [2.0.1] - 2025-03-14]
+## [2.0.1] - 2025-03-14
 
 ### Changed
 
