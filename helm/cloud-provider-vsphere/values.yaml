@@ -52,7 +52,7 @@ serviceAccount:
 daemonset:
   annotations: {}
   image: gsoci.azurecr.io/giantswarm/cloud-provider-vsphere
-  tag: v1.34.0
+  tag: v1.35.0
   pullPolicy: IfNotPresent
   dnsPolicy: ClusterFirst
   cmdline:

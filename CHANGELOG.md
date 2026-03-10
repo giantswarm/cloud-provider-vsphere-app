@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Set `version` field of `Chart.yaml` to latest repo release fix ci checks.
+- Update to upstream `1.35.0`.
 
 ## [2.2.0] - 2026-01-07
 
