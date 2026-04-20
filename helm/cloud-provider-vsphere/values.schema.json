@@ -208,24 +208,6 @@
             "title": "global",
             "description": "Global values are values that can be accessed from any chart or subchart by exactly the same name."
         },
-        "podSecurityPolicy": {
-            "type": "object",
-            "title": "podSecurityPolicy",
-            "description": "Specify if a Pod Security Policy for kube-state-metrics must be created",
-            "additionalProperties": false,
-            "properties": {
-                "annotations": {
-                    "type": "object",
-                    "title": "annotations",
-                    "additionalProperties": false
-                },
-                "enabled": {
-                    "type": "boolean",
-                    "title": "enabled",
-                    "default": false
-                }
-            }
-        },
         "rbac": {
             "type": "object",
             "title": "rbac",
