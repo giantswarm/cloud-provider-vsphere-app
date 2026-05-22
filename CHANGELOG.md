@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Update to upstream `v1.35.1`.
+- Update dependency kubernetes/cloud-provider-vsphere to v1.36.0.
 
 ### Removed
 
