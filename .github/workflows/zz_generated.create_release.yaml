@@ -20,7 +20,7 @@ permissions: {}
 
 jobs:
   create-release:
-    uses: giantswarm/github-workflows/.github/workflows/create-release.yaml@main
+    uses: giantswarm/github-workflows/.github/workflows/create-release.yaml@8618a2e9ad62ae431581df07bb86e8b081f7133d # main
     with:
       build-release-artifacts: false
       fetch-deep-gitlog-for-build: true

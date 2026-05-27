@@ -16,7 +16,7 @@ permissions: {}
 
 jobs:
   validate-changelog:
-    uses: giantswarm/github-workflows/.github/workflows/validate-changelog.yaml@main
+    uses: giantswarm/github-workflows/.github/workflows/validate-changelog.yaml@8618a2e9ad62ae431581df07bb86e8b081f7133d # main
     permissions:
       contents: read
       pull-requests: write
