@@ -23,7 +23,7 @@
   "customManagers": [
       {
         "customType": "regex",
-        "fileMatch": [
+        "managerFilePatterns": [
           "config/.+\\.y[a]?ml$",
           "helm/cloud-provider-vsphere/Chart.yaml"
         ],
@@ -36,7 +36,7 @@
       },
       {
         "customType": "regex",
-        "fileMatch": [
+        "managerFilePatterns": [
           "config/.+\\.y[a]?ml$",
           "helm/cloud-provider-vsphere/Chart.yaml"
         ],
