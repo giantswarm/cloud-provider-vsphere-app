@@ -2,4 +2,4 @@ override-chart-version: true
 generate-metadata: true
 chart-dir: ./helm/cloud-provider-vsphere
 destination: ./build
-giantswarm-validator-ignored-checks: "C0001"
+giantswarm-validator-ignored-checks: C0001
