@@ -29,6 +29,8 @@ cp -R \
   "./config/cloud-provider-for-vsphere/overwrites/." \
   "$chart_dir/"
 
+rm -f "${chart_dir}/templates/podsecuritypolicy.yaml"
+
 # replace the controller image
 ${YQ} eval --inplace 'with(select(.daemonset.image != null); .daemonset.image = "gsoci.azurecr.io/giantswarm/cloud-provider-vsphere")' "$chart_dir/values.yaml"
 # rename the chart to ensure it stays consistent
