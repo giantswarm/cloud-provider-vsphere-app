@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.5.1] - 2026-08-03
+
 ### Changed
 
 - Helpers: Replace `+` in version label.
@@ -173,7 +175,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Add upstream CPI chart at 1.22.6
 
-[Unreleased]: https://github.com/giantswarm/cloud-provider-vsphere-app/compare/v2.5.0...HEAD
+[Unreleased]: https://github.com/giantswarm/cloud-provider-vsphere-app/compare/v2.5.1...HEAD
+[2.5.1]: https://github.com/giantswarm/cloud-provider-vsphere-app/compare/v2.5.0...v2.5.1
 [2.5.0]: https://github.com/giantswarm/cloud-provider-vsphere-app/compare/v2.4.0...v2.5.0
 [2.4.0]: https://github.com/giantswarm/cloud-provider-vsphere-app/compare/v2.3.0...v2.4.0
 [2.3.0]: https://github.com/giantswarm/cloud-provider-vsphere-app/compare/v2.2.0...v2.3.0
