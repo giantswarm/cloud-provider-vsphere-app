@@ -42,6 +42,49 @@
                     "title": "name",
                     "default": "vsphere-cloud-config"
                 },
+                "nodes": {
+                    "type": "object",
+                    "title": "nodes",
+                    "additionalProperties": false,
+                    "properties": {
+                        "internalNetworkSubnetCidr": {
+                            "type": "string",
+                            "title": "internalNetworkSubnetCidr",
+                            "description": "Select the first address within the provided subnet for the node Internal IP",
+                            "default": ""
+                        },
+                        "externalNetworkSubnetCidr": {
+                            "type": "string",
+                            "title": "externalNetworkSubnetCidr",
+                            "description": "Select the first address within the provided subnet for the node External IP",
+                            "default": ""
+                        },
+                        "internalVmNetworkName": {
+                            "type": "string",
+                            "title": "internalVmNetworkName",
+                            "description": "Select the first address on the VM network matching the provided name for the node Internal IP",
+                            "default": ""
+                        },
+                        "externalVmNetworkName": {
+                            "type": "string",
+                            "title": "externalVmNetworkName",
+                            "description": "Select the first address on the VM network matching the provided name for the node External IP",
+                            "default": ""
+                        },
+                        "excludeInternalNetworkSubnetCidr": {
+                            "type": "string",
+                            "title": "excludeInternalNetworkSubnetCidr",
+                            "description": "Never select Internal IP addresses within the provided subnet ranges (highest precedence)",
+                            "default": ""
+                        },
+                        "excludeExternalNetworkSubnetCidr": {
+                            "type": "string",
+                            "title": "excludeExternalNetworkSubnetCidr",
+                            "description": "Never select External IP addresses within the provided subnet ranges (highest precedence)",
+                            "default": ""
+                        }
+                    }
+                },
                 "password": {
                     "type": "string",
                     "title": "password",
@@ -164,7 +207,7 @@
                 "image": {
                     "type": "string",
                     "title": "image",
-                    "default": "gcr.io/cloud-provider-vsphere/cpi/release/manager"
+                    "default": "gsoci.azurecr.io/giantswarm/cloud-provider-vsphere"
                 },
                 "podAnnotations": {
                     "type": "object",
@@ -194,7 +237,7 @@
                 "tag": {
                     "type": "string",
                     "title": "tag",
-                    "default": "v1.34.0"
+                    "default": "v1.37.0"
                 },
                 "tolerations": {
                     "type": "array",
