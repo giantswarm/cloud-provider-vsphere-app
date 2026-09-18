@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Update dependency kubernetes/cloud-provider-vsphere to v1.37.0.
+
 ## [2.5.1] - 2026-08-03
 
 ### Changed
