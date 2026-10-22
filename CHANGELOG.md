@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update dependency kubernetes/cloud-provider-vsphere to v1.37.0.
 - Update architect to v10.12.2 (giantswarm/cloud-provider-vsphere-app#381)
 - Update architect to v10.13.1 (giantswarm/cloud-provider-vsphere-app#383)
+- Update architect to v10.13.2 (giantswarm/cloud-provider-vsphere-app#384)
 
 ## [2.5.1] - 2026-08-03
 
