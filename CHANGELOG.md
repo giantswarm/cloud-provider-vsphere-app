@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Update architect to v10.12.2 (giantswarm/cloud-provider-vsphere-app#381)
 - Update architect to v10.13.1 (giantswarm/cloud-provider-vsphere-app#383)
 - Update architect to v10.13.2 (giantswarm/cloud-provider-vsphere-app#384)
+- Update architect to v10.14.18 (giantswarm/cloud-provider-vsphere-app#390)
 
 ## [2.5.1] - 2026-08-03
 
