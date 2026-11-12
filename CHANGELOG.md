@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.6.0] - 2026-11-11
+
 ### Fixed
 
 - The `helm.sh/chart` label is valid for long chart versions: the 63-character cut trims the whole trailing run of `-`, `.` and `_`.
@@ -193,7 +195,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Add upstream CPI chart at 1.22.6
 
-[Unreleased]: https://github.com/giantswarm/cloud-provider-vsphere-app/compare/v2.5.1...HEAD
+[Unreleased]: https://github.com/giantswarm/cloud-provider-vsphere-app/compare/v2.6.0...HEAD
+[2.6.0]: https://github.com/giantswarm/cloud-provider-vsphere-app/compare/v2.5.1...v2.6.0
 [2.5.1]: https://github.com/giantswarm/cloud-provider-vsphere-app/compare/v2.5.0...v2.5.1
 [2.5.0]: https://github.com/giantswarm/cloud-provider-vsphere-app/compare/v2.4.0...v2.5.0
 [2.4.0]: https://github.com/giantswarm/cloud-provider-vsphere-app/compare/v2.3.0...v2.4.0
