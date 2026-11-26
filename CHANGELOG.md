@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Update architect to v10.18.0 (giantswarm/cloud-provider-vsphere-app#420)
+
 ## [2.6.0] - 2026-11-11
 
 ### Fixed
